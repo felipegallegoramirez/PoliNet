@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 //const mongoosePaginateAggregate = require("mongoose-aggregate-paginate-v2");
 const StorageScheme = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      require: true
+    },
     email: {
       type: String,
       required: true,
@@ -11,50 +15,71 @@ const StorageScheme = new mongoose.Schema(
     },
     password: {
       type: String,
-      require: true,
+      require: true
     },
-    dni: {
-      type: Number,
-
-    },
-    name: {
+    rol: {
       type: String,
       require: true
     },
-    address: {
+    profresion: {
       type: String,
-
+      require: true
     },
-    phone: {
-      type: Number,
-
-    },
-    verified: {
-      state: {
-        type: Number,
-        require: false
-      },
-      code: {
-        type: Number,
-        require: false
-      },
-    },
-
-    shop: {
-      id: {
-        type: String,
-        require: true
-      },
-      permissions: [{
+    files_id: [{
+      type: String,
+      require: true
+    }],
+    post_id: [{
+      type: String,
+      require: true
+    }],
+    bloq:[{
+      day:[{
         type: Number,
         require: true
       }]
+    }],
+    services:[{
+      type: String,
+      require: true
+    }],
+    booking:[{
+      type: String,
+      require: true
+    }],
+    code: {
+      type: String,
+      require: true
     },
-    ips:[{
-        type: String,
-        require: true
-      }]
+    active: {
+      type: Boolean,
+      require: true
     },
+    description: {
+      type: String,
+      require: true
+    },
+    category: {
+      type: String,
+      require: true
+    },
+    locate: {
+      type: String,
+      require: true
+    },
+    link: {
+      type: String,
+      require: true
+    },
+    followers:[{
+      type: String,
+      require: true
+    }],
+    follows:[{
+      type: String,
+      require: true
+    }],
+  },
 
 
   {
