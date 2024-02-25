@@ -46,4 +46,4 @@ const StorageScheme = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.models.Service || mongoose.model("Service", StorageScheme);
+module.exports = mongoose.models.Survey || mongoose.model("Survey", StorageScheme);
