@@ -1,0 +1,159 @@
+<img class="Background" src="./../../assets/fondo.PNG" alt="">
+<div class="modalSubEnterprise" id="modalDeletePost">
+    <div class="BoxModal">
+        <div class="closeDiv">
+            <i (click)="SubEnterpriseClose('modalDeletePost')" class="material-icons">close</i>
+        </div>
+        <h2>Eliminar publicación</h2>
+        <p>Selecciona cuál de tus publicaciones quieres eleminar</p>
+        <form class="FormSign" action="">
+            <select name="" id="">
+                <option value="">Title</option>
+            </select>
+            <button>Eliminar</button>
+        </form>
+    </div>
+</div>
+<div class="modalSubEnterprise" id="modalSubEnter">
+    <div class="BoxModal">
+        <div class="closeDiv">
+            <i (click)="SubEnterpriseClose('modalSubEnter')" class="material-icons">close</i>
+        </div>
+        <h2>Agregar emprendedor</h2>
+        <p>En esta pestaña puedes darle a un emprendedor los permisos
+            para ser un emprendedor en PoliNet. <br> ¡Sé discreto a la hora de inscribir
+            a alguien!
+        </p>
+        <form class="FormSign" action="">
+            <input type="text" placeholder="Correo electronico del emprendedor">
+            <button>Registrar</button>
+        </form>
+    </div>
+</div>
+<div class="body">
+    <section class="photo-description-follow">
+        <div class="Information">
+            <div class="photo-follow">
+                <img src="./../../assets/ImageProfile.jpg" alt="">
+                <button id="followMeButton" class="followMe">Seguir</button>
+            </div>
+            <div class="totalInfo">
+                <div class="whoInfo">
+                    <div class="Name-Followers">
+                        <h2>Sergio Andres Calderon Osorio</h2>
+                        <p>9990 seguidores</p>
+                    </div>
+                    <div class="description">
+                        <p>Empanadas Picantes "Sabor Colombiano" es un emprendimiento gastronómico dedicado a la preparación y venta
+                            de deliciosas empanadas colombianas acompañadas de ají casero. Nuestro objetivo es ofrecer
+                            a nuestros clientes una experiencia culinaria auténtica y sabrosa, resaltando los
+                            sabores tradicionales de la cocina colombiana con un toque de picante.</p>
+                    </div>
+                </div>
+                <div class="extraInfo">
+                    <ol>
+                        <li>Categoria</li>
+                        <li>Ubicación</li>
+                        <li><a href="">Link principal</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="EnterprisePriv ContentButton" id="EnterprisePriv">
+                <button class="ButtonBasic" id="editProfile">Editar perfil</button>
+                <button class="ButtonBasic" id="makePost">Crear post</button>
+                <button class="ButtonBasic" id="deletePost" (click)="SubEnterpriseOpen('modalDeletePost')">Eliminar post</button>
+            </div>
+            <div class="EnterprisePub ContentButton" id="EnterprisePub">
+                <button class="ButtonBasic">Hoja de vida</button>
+            </div>
+            <div class="MentorPriv ContentButton" id="MentorPriv">
+                <button class="ButtonBasic" id="editProfile">Editar perfil</button>
+                <button class="ButtonBasic" (click)="SubEnterpriseOpen('modalSubEnter')">Agregar empresario</button>
+            </div>
+            <div class="MentorPub ContentButton" id="MentorPub">
+                <button class="ButtonBasic">Hoja de vida</button>
+            </div>
+            <div class="UserRecurrent ContentButton" id="UserRecurrent">
+                <button class="ButtonBasic" id="editProfile">Editar perfil</button>
+                <button class="ButtonBasic">Postular</button>
+            </div>
+        </div>
+    </section>
+    <section class="Post-Zone">
+        <div class="UserRecurrent-Advertice Our-post" id="Advertice">
+            <div class="ContainerPost">
+                <div class="title-post">
+                    <h2>Aviso</h2>
+                </div>
+                <div class="description-post">
+                    <p>Por el momento esta cuenta es basica, si deseas convertirte en un mentor, selecciona postular,
+                        o por otra parte deseas agregar tu emprendimiento, ponte en contacto con un mentor :D</p>
+                </div>
+            </div>
+        </div>
+        <div class="Our-post">
+            <a href="/Postview" class="ContainerPost">
+                <div>
+                    <div class="Photo-perfil">
+                        <div>
+                            <img src="./../../assets/ImageProfile.jpg" alt="">
+                        </div>
+                        <h3>Sergio Andres Calderon Osorio</h3>
+                    </div>
+                    
+                </div>
+                <div class="img-post">
+                    <img id="ImagenLoad" src="./../../assets/4439e565f60816fcb07ebfe67a231d556c101093c39d300210ad4535d6a14707.jpg" alt="">
+                </div>
+                <div class="description-post">
+                    <h2>Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
+                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
+                </div>
+            </a>
+            <a href="/Postview" class="ContainerPost">
+                <div>
+                    <div class="Photo-perfil">
+                        <div>
+                            <img src="./../../assets/ImageProfile.jpg" alt="">
+                        </div>
+                        <h3>Sergio Andres Calderon Osorio</h3>
+                    </div>
+                    
+                </div>
+                <div class="img-post">
+                    <img id="ImagenLoad" src="" alt="">
+                </div>
+                <div class="description-post">
+                    <h2>Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
+                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
+                </div>
+            </a>
+            <a href="/Postview" class="ContainerPost">
+                <div>
+                    <div class="Photo-perfil">
+                        <div>
+                            <img src="./../../assets/ImageProfile.jpg" alt="">
+                        </div>
+                        <h3>Sergio Andres Calderon Osorio</h3>
+                    </div>
+                    
+                </div>
+                <div class="img-post">
+                    <img id="ImagenLoad" src="./../../assets/4439e565f60816fcb07ebfe67a231d556c101093c39d300210ad4535d6a14707.jpg" alt="">
+                </div>
+                <div class="description-post">
+                    <h2>Title</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
+                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+</div>

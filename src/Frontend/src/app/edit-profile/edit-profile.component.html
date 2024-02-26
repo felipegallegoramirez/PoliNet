@@ -1,0 +1,33 @@
+<img class="Background" src="./../../assets/fondo.PNG" alt="">
+<div class="body">
+    <section class="photo-description-follow">
+        <form class="Information">
+            <div class="img-post photo-follow">
+                <h3>Cambiar imagen de perfil</h3>
+                <img class="DefaultImage" (click)="photoInput.click()" [src]="photoSelected">
+                <input  #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
+            </div>
+            <div class="totalInfo">
+                <div class="whoInfo">
+                    <div class="Name">
+                        <h2>Sergio Andres Calderon Osorio</h2>
+                    </div>
+                    <div class="description">
+                        <textarea cols="30" rows="10" placeholder="Escribe una descripción"></textarea>
+                    </div>
+                </div>
+                <div class="extraInfo">
+                    <h3>Escribe una categoria a la que más se apegue tu negocio</h3>
+                    <input type="text" placeholder="Escribe una categoria">
+                    <h3>Escribe la dirección de tu negocio si tiene una</h3>
+                    <input type="text" placeholder="Escribe una dirección">
+                    <h3>Pega el enlace principal de tu negocio ya sea instagram o whatsApp, etc.</h3>
+                    <input type="text" placeholder="Pega el enlace">
+                </div>
+            </div>
+            <div class="ButtonSend">
+                <button>Actualizar información</button>
+            </div>
+        </form>
+    </section>
+</div>

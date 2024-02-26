@@ -3,19 +3,20 @@
     --c2: #005D74;
     --r: #B50F17;
     --w: #F2F0F0;
-    --sw:#F6F6F6;
+    --sw:#fff;
     --b: #0D1311;
-    --g: #79747E;
+    --g: #C4C4C4;
   }
   
   h2{
-    font-size:22px;
-  }
-  h3{
     font-size:20px;
   }
+  h3{
+    font-size:18px;
+  }
   a , p ,input,button {
-  font-size:18px; 
+  font-size:15px;
+  line-height: 25px;
   }
   
   *{

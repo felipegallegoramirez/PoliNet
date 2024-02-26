@@ -1,42 +1,65 @@
-export class User {
-    _id?: string;
-    email: string;
-    password: string;
-    dni: number;
-    name: string;
-    city?: string;
-    phone: number;
-    verified?: {
-      state?: number;
-      code?: number;
-    };
-    shop: {
-      id?: string;
-      permissions?: Array<number>;
-    };
-    ips?: Array<string>;
-  
-    constructor(
-      _id :string = "",
-      email: string = "",
-      password: string = "",
-      dni: number = 0,
-      name: string = "",
-      city: string = "",
-      phone: number = 0,
-      verified: {state?:number;code?:number;}={},
-      shop: {id?: string;permissions?: Array<number>;}={},
-      ips: Array<string> = []
-    ) {
+export class User{
+
+  _id:String ;
+  name:String;
+  email:String;
+  password:String;
+  rol:String;
+  files_id:Array<String>;
+  post_id:Array<String>;
+  bloq:Array<{
+    day:Array<number>;
+  }>;
+  services:Array<String>;
+  booking:Array<String>;
+  code:String;
+  active:String;
+  description:String;
+  category:String;
+  locate:String;
+  link:String;
+  Followers:Array<String>;
+  Follows:Array<String>;
+
+  constructor(
+    _id:String = "",
+    name:String = "",
+    email:String = "",
+    password:String = "",
+    rol:String = "",
+    files_id:Array<String> = [],
+    post_id:Array<String> = [],
+    bloq:Array<{
+      day:Array<number>,
+    }> = [],
+    services:Array<String> = [],
+    booking:Array<String> = [],
+    code:String = "",
+    active:String = "",
+    description:String = "",
+    category:String = "",
+    locate:String = "",
+    link:String = "",
+    Followers:Array<String> = [],
+    Follows:Array<String> = []
+    ){
       this._id = _id;
+      this.name = name;
       this.email = email;
       this.password = password;
-      this.dni = dni;
-      this.name = name;
-      this.city = city;
-      this.phone = phone;
-      this.shop = shop;
-      this.verified = verified;
-      this.ips = ips;
-    }
+      this.rol = rol;
+      this.files_id = files_id;
+      this.post_id = post_id;
+      this.bloq = bloq;
+      this.services = services;
+      this.booking = booking;
+      this.code = code;
+      this.active = active;
+      this.description = description;
+      this.category = category;
+      this.locate = locate;
+      this.link = link;
+      this.Followers = Followers;
+      this.Follows = Follows;
   }
+}
