@@ -7,6 +7,7 @@
                 <img class="DefaultImage" (click)="photoInput.click()" [src]="photoSelected">
                 <input  #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
             </div>
+            
             <div class="totalInfo">
                 <div class="whoInfo">
                     <div class="Name">
@@ -15,6 +16,10 @@
                     <div class="description">
                         <textarea cols="30" rows="10" placeholder="Escribe una descripción"></textarea>
                     </div>
+                </div>
+                <div>
+                    <h3>Aquí puedes cargar tu hoja de vida como empresa o mentor</h3>
+                    <input type="file" accept="application/pdf" />
                 </div>
                 <div class="extraInfo">
                     <h3>Escribe una categoria a la que más se apegue tu negocio</h3>

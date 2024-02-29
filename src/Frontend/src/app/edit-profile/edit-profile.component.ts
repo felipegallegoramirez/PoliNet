@@ -20,4 +20,5 @@ export class EditProfileComponent {
       reader.readAsDataURL(this.file);
     }  
   }
+  
 }
