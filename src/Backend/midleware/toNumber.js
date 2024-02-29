@@ -14,4 +14,5 @@ function ToNumber(list) {
 }
 }
 
+
 module.exports = ToNumber;
