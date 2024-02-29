@@ -13,6 +13,15 @@ PostCtrl.getPosts = async (req, res, next) => {
     }
 };
 
+PostCtrl.getPostsById = async (req, res, next) =>{
+    try{
+        const Postid = req.params.id;
+        const save = await Post.Id({Postid});
+        res.status(200).send(save)
+    }catch(err){
+        res.status(400).send(err)
+    }   
+}
 
 PostCtrl.createPost = async (req, res, next) => {
     try{
@@ -29,6 +38,7 @@ PostCtrl.createPost = async (req, res, next) => {
 
 };
 
+
 PostCtrl.getPost = async (req, res, next) => {
     try{
         const { id } = req.params;
@@ -38,17 +48,6 @@ PostCtrl.getPost = async (req, res, next) => {
         res.status(400).send(err)
 
     }
-};
-
-PostCtrl.editPost = async (req, res, next) => {
-    try{
-        const { id } = req.params;
-        save = await Post.findByIdAndUpdate(id, {$set: req.body}, {new: true});
-        res.status(200).send(save)
-    }catch(err){
-    res.status(400).send(err)
-}
-
 };
 
 PostCtrl.deletePost = async (req, res, next) => {
