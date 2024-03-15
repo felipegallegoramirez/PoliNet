@@ -13,10 +13,9 @@ PostCtrl.getPosts = async (req, res, next) => {
     }
 };
 
-PostCtrl.getPostsById = async (req, res, next) =>{
+PostCtrl.getPostsByUser = async (req, res, next) =>{
     try{
-        const Postid = req.params.id;
-        const save = await Post.Id({Postid});
+        const save = await Post.find({creator_id:req.params.id})
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
@@ -25,9 +24,25 @@ PostCtrl.getPostsById = async (req, res, next) =>{
 
 PostCtrl.createPost = async (req, res, next) => {
     try{
-        const { title,images,creator_image,creator_id,creator_name,content,description,likes,comment} = req.body;
-
-        const body = { title,images,creator_image,creator_id,creator_name,content,description,likes,comment};
+        let image = req.file.filename;
+        const { title,
+            creator_image,
+            creator_id,
+            creator_name,
+            description,
+            likes,
+            comment} = req.body;
+            
+        const body = { title,
+            creator_image,
+            image,
+            creator_id,
+            creator_name,
+            description,
+            likes,
+            comment};
+            
+        
         var save= await Post.create(body);
         res.status(200).send(save)
     }catch(err){
@@ -37,6 +52,16 @@ PostCtrl.createPost = async (req, res, next) => {
 
 
 };
+
+PostCtrl.putPost = async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        save = await Post.findByIdAndUpdate(id, {$set: req.body}, {new: true});  
+        res.status(200).send(save);
+    }catch(err){
+        res.status(400).send(err);
+    }
+}
 
 
 PostCtrl.getPost = async (req, res, next) => {

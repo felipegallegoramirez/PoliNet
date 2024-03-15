@@ -10,10 +10,9 @@
 /*-------Perfil-------*/
 .body{
     width: 100%;
-
     box-sizing: border-box;
     height: 100vh;
-    
+    margin-top: 20px;
 }
 .photo-description-follow{
     margin: 10px auto 0 auto;
@@ -32,8 +31,6 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
 }
 .photo-follow{
-    width: 100%;
-    height: 200px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -44,8 +41,8 @@
 .photo-follow img{
     cursor: pointer;
     border-radius: 100%;
-    width: 20%;
-    height: 190px;
+    width: 170px;
+    height: 170px;
     object-fit: cover;
 }
 .totalInfo{
@@ -62,7 +59,7 @@ textarea{
     border-radius: 10px;
     padding-top: 5px;
     padding-left: 10px;
-    font-size: 13px;
+    font-size: 15px;
     resize: none;
     width: 90%;
 }
@@ -78,7 +75,7 @@ h3{
     width: 60%;
     border-radius: 10px;
     padding-left: 10px;
-    font-size: 13px;
+    font-size: 15px;
     height: 35px;
     margin-top: 8px;
     margin-right: 20px;
@@ -111,3 +108,4 @@ h3{
     background-color: var(--sw);
     color: var(--c1);
 }
+

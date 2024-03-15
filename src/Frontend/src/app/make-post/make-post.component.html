@@ -1,22 +1,21 @@
 <img class="Background" src="./../../assets/fondo.PNG" alt="">
 <div class="body-home">
-    <form class="ContainerPost">
+    <form class="ContainerPost" [formGroup]="formMakePost" (submit)="createPost()">
         <div class="title-post">
             <h2>Escribe un titulo para tu publicación</h2>
-            <input type="text" placeholder="Escribe un titulo para tu publicación">
+            <input formControlName="title" type="text" placeholder="Escribe un titulo para tu publicación">
         </div>
         <h2>Agregar fotos</h2>
         <div class="img-post">
-                
                 <img class="DefaultImage" (click)="photoInput.click()" [src]="photoSelected">
-                <input #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
+                <input  #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
         </div>
         <div class="description-post">
             <h2>Descripción</h2>
-            <textarea  type="text" rows="4" cols="50" maxlength="600" spellcheck="true" placeholder="Escribe una descripción para tu post"></textarea>
+            <textarea formControlName="description" type="text" rows="4" cols="50" maxlength="600" spellcheck="true" placeholder="Escribe una descripción para tu post"></textarea>
         </div>
         <div class="ButtonSend">
-            <button>Publicar</button>
+            <button [disabled]="!formMakePost.valid">Publicar</button>
         </div>
     </form>
 </div>

@@ -6,11 +6,11 @@
         </div>
         <h2>Eliminar publicación</h2>
         <p>Selecciona cuál de tus publicaciones quieres eleminar</p>
-        <form class="FormSign" action="">
-            <select name="" id="">
-                <option value="">Title</option>
+        <form class="FormSign" [formGroup]="formDelete" (submit)="deletePost()" >
+            <select formControlName="delete_Id" id="">
+                <option value="{{post._id}}" *ngFor="let post of posts">{{post.title}}</option>
             </select>
-            <button>Eliminar</button>
+            <button [disabled]="!formDelete.valid">Eliminar</button>
         </form>
     </div>
 </div>
@@ -24,9 +24,9 @@
             para ser un emprendedor en PoliNet. <br> ¡Sé discreto a la hora de inscribir
             a alguien!
         </p>
-        <form class="FormSign" action="">
-            <input type="text" placeholder="Correo electronico del emprendedor">
-            <button>Registrar</button>
+        <form class="FormSign" [formGroup]="formPutRol" (submit)="putRol()">
+            <input formControlName="emailRol" type="text" placeholder="Correo electronico del emprendedor">
+            <button [disabled]="!formPutRol.valid" >Registrar</button>
         </form>
     </div>
 </div>
@@ -34,46 +34,43 @@
     <section class="photo-description-follow">
         <div class="Information">
             <div class="photo-follow">
-                <img src="./../../assets/ImageProfile.jpg" alt="">
-                <button id="followMeButton" class="followMe">Seguir</button>
+                <img src="./../../../../Backend/storage/{{user.files_id[0]}}" alt="">
+                <button id="followMeButton" class="followMe" (click)="Follow()">Seguir</button>
             </div>
             <div class="totalInfo">
                 <div class="whoInfo">
-                    <div class="Name-Followers">
-                        <h2>Sergio Andres Calderon Osorio</h2>
-                        <p>9990 seguidores</p>
+                    <div class="Name-Followers" >
+                        <h2>{{user.name}}</h2>
+                        <h3 id="Followers">Seguidores: {{user.followers.length}}</h3>
                     </div>
                     <div class="description">
-                        <p>Empanadas Picantes "Sabor Colombiano" es un emprendimiento gastronómico dedicado a la preparación y venta
-                            de deliciosas empanadas colombianas acompañadas de ají casero. Nuestro objetivo es ofrecer
-                            a nuestros clientes una experiencia culinaria auténtica y sabrosa, resaltando los
-                            sabores tradicionales de la cocina colombiana con un toque de picante.</p>
+                        <p>{{user.description}}</p>
                     </div>
                 </div>
-                <div class="extraInfo">
+                <div class="extraInfo" id="extraInfo">
                     <ol>
-                        <li>Categoria</li>
-                        <li>Ubicación</li>
-                        <li><a href="">Link principal</a></li>
+                        <li><p class="material-symbols-outlined">sort</p> {{user.category}}</li>
+                        <li><p class="material-symbols-outlined">search</p> {{user.locate}}</li>
+                        <li><p class="material-symbols-outlined">captive_portal</p><a class="linkPerfil" href="{{user.link}}">{{user.link}}</a></li>
                     </ol>
                 </div>
             </div>
         </div>
         <div class="buttons">
-            <div class="EnterprisePriv ContentButton" id="EnterprisePriv">
+            <div class="EnterprisePriv ContentButton2" id="EnterprisePriv">
                 <button class="ButtonBasic" id="editProfile">Editar perfil</button>
                 <button class="ButtonBasic" id="makePost">Crear post</button>
                 <button class="ButtonBasic" id="deletePost" (click)="SubEnterpriseOpen('modalDeletePost')">Eliminar post</button>
             </div>
             <div class="EnterprisePub ContentButton" id="EnterprisePub">
-                <button class="ButtonBasic">Hoja de vida</button>
+                <a class="ButtonBasicA" href="./../../../../Backend/storage/{{user.files_id[1]}}" download="{{user.files_id[1]}}">Hoja de vida</a>
             </div>
-            <div class="MentorPriv ContentButton" id="MentorPriv">
+            <div class="MentorPriv ContentButton3" id="MentorPriv">
                 <button class="ButtonBasic" id="editProfile">Editar perfil</button>
                 <button class="ButtonBasic" (click)="SubEnterpriseOpen('modalSubEnter')">Agregar empresario</button>
             </div>
             <div class="MentorPub ContentButton" id="MentorPub">
-                <button class="ButtonBasic">Hoja de vida</button>
+                <a class="ButtonBasicA" href="./../../../../Backend/storage/{{user.files_id[1]}}" download="{{user.files_id[1]}}">Hoja de vida</a>
             </div>
             <div class="UserRecurrent ContentButton" id="UserRecurrent">
                 <button class="ButtonBasic" id="editProfile">Editar perfil</button>
@@ -94,64 +91,22 @@
             </div>
         </div>
         <div class="Our-post">
-            <a href="/Postview" class="ContainerPost">
+            <a href="/Postview/{{post._id}}" class="ContainerPost" *ngFor="let post of posts">
                 <div>
                     <div class="Photo-perfil">
                         <div>
                             <img src="./../../assets/ImageProfile.jpg" alt="">
                         </div>
-                        <h3>Sergio Andres Calderon Osorio</h3>
+                        <h3>{{post.creator_name}}</h3>
                     </div>
                     
                 </div>
                 <div class="img-post">
-                    <img id="ImagenLoad" src="./../../assets/4439e565f60816fcb07ebfe67a231d556c101093c39d300210ad4535d6a14707.jpg" alt="">
+                    <img id="ImagenLoad" src="http://localhost:3000/public/images/{{post.image}}" alt="">
                 </div>
                 <div class="description-post">
-                    <h2>Title</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
-                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
-                </div>
-            </a>
-            <a href="/Postview" class="ContainerPost">
-                <div>
-                    <div class="Photo-perfil">
-                        <div>
-                            <img src="./../../assets/ImageProfile.jpg" alt="">
-                        </div>
-                        <h3>Sergio Andres Calderon Osorio</h3>
-                    </div>
-                    
-                </div>
-                <div class="img-post">
-                    <img id="ImagenLoad" src="" alt="">
-                </div>
-                <div class="description-post">
-                    <h2>Title</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
-                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
-                </div>
-            </a>
-            <a href="/Postview" class="ContainerPost">
-                <div>
-                    <div class="Photo-perfil">
-                        <div>
-                            <img src="./../../assets/ImageProfile.jpg" alt="">
-                        </div>
-                        <h3>Sergio Andres Calderon Osorio</h3>
-                    </div>
-                    
-                </div>
-                <div class="img-post">
-                    <img id="ImagenLoad" src="./../../assets/4439e565f60816fcb07ebfe67a231d556c101093c39d300210ad4535d6a14707.jpg" alt="">
-                </div>
-                <div class="description-post">
-                    <h2>Title</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Similique doloremque maxime obcaecati quidem sapiente quas dolore tenetur quae qui 
-                    dolorum minus sit dignissimos praesentium dolores est, aut consequatur id mollitia.</p>
+                    <h2>{{post.title}}</h2>
+                    <p>{{post.description}}</p>
                 </div>
             </a>
         </div>

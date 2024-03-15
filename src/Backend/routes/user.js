@@ -5,9 +5,11 @@ const {checkAuth , checkpermision} = require('../midleware/authverify')
 
 router.get("/", user.getUsers);
 router.post("/", user.createUser);
+router.get("/search/", user.SearchUser);
 router.get("/service/:id", user.getUsersService);
 router.get("/unique/:id", user.getUser); 
-router.put("/:id",user.editUser);
+router.get("/rol/:email", user.putRolUser);
+router.put("/editUser/:id",user.editUser);
 router.delete("/:id", user.deleteUser);
 
 

@@ -2,12 +2,12 @@
     min-height: 100vh;
     height: 100%;
     width: 100%;
+    
 }
 
 /*-------------------Navegador lateral------------------*/
 .SideBar{
     box-sizing: border-box;
-    /*display: none;*/
     overflow: hidden;
     position: fixed;
     z-index: 10000;
@@ -15,6 +15,7 @@
     top: 0;
     border-right:5px solid var(--c2);
     background-color: var(--sw);
+    
     width: 15%;
     height: 100vh;
     transition: transform .5s ease;
@@ -55,6 +56,9 @@
     width: 100%;
     
 }
+.ButtonClose{
+    cursor: pointer;
+}
 .iconPerfil img, .iconMeeting img, .iconConfig img, .iconHome img{
     width: 100%;
     height: 100%;
@@ -70,7 +74,7 @@
     flex-direction: row;
     align-items: center;
     margin-bottom: 10px;
-    width: calc(100%-20px);
+    width: 100%
 }
 .ButtonClose{
     display: none;

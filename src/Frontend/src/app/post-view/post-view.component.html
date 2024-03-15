@@ -11,7 +11,7 @@
 <div class="containerPost">
     <img class="Background" src="./../../assets/fondo.PNG" alt="">
     <div class="imgPost">
-        <img src="./../../assets/4439e565f60816fcb07ebfe67a231d556c101093c39d300210ad4535d6a14707.jpg" alt="">
+        <img src="http://localhost:3000/public/images/{{post.image}}" alt="">
     </div>
     <div class="bodyPost">
         <div class="body">
@@ -19,77 +19,34 @@
                 <div>
                     <img src="./../../assets/ImageProfile.jpg" alt="">
                 </div>
-                <a href="/Profile">Sergio Andres Calderon Osorio</a>
+                <a href="/Profile/{{post.creator_id}}">{{post.creator_name}}</a>
             </div>
             <div class="titlePost">
-                <h2>Title</h2>
+                <h2>{{post.title}}</h2>
             </div>
             <div class="DescriptionPost">
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing
-                    elit. Et necessitatibus sed iusto obcaecati quis dolore inventore 
-                    ratione. Veritatis magnam ullam, eveniet eligendi minima 
-                    laudantium voluptatum odit provident similique, maxime voluptatibus!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing
-                    elit. Et necessitatibus sed iusto obcaecati quis dolore inventore 
-                    ratione. Veritatis magnam ullam, eveniet eligendi minima 
-                    laudantium voluptatum odit provident similique, maxime voluptatibus!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing
-                    elit. Et necessitatibus sed iusto obcaecati quis dolore inventore 
-                    ratione. Veritatis magnam ullam, eveniet eligendi minima 
-                    laudantium voluptatum odit provident similique, maxime voluptatibus!
-                    Lorem, ipsum dolor sit amet consectetur adipisicing
-                    elit. Et necessitatibus sed iusto obcaecati quis dolore inventore 
-                    ratione. Veritatis magnam ullam, eveniet eligendi minima 
-                    laudantium voluptatum odit provident similique, maxime voluptatibus!
-                </p>
+                <p>{{post.description}}</p>
             </div>
             <div class="Likes">
-                <p id="likeIcon" (click)="Likeit()" class="material-symbols-outlined">
+                <p id="likeIcon" (click)="likeit()" class="material-symbols-outlined">
                     favorite
                 </p>
-                <p class="NumberLikes">25</p>
+                <p class="NumberLikes">{{post.likes.length}}</p>
             </div>
             <div class="comments">
-                <form class="inputsComment">
-                    <textarea  cols="30" rows="10" placeholder="¡Escribe un comentario!"></textarea>
-                    <button>Comentar</button>
+                <form class="inputsComment" [formGroup]="commentForm" (submit)="comment()">
+                    <textarea formControlName="commentUser" cols="30" rows="10" placeholder="¡Escribe un comentario!"></textarea>
+                    <button [disabled]="!commentForm.valid">Comentar</button>
                 </form>
                 <div class="anyComment">
-                    <div class="userComment">
+                    <div class="userComment" *ngFor="let comment of Boxcomments">
                         <div class="Photo-perfil">
                             <div>
                                 <img src="./../../assets/ImageProfile.jpg" alt="">
                             </div>
-                            <a href="./Profile">Sergio Andres Calderon Osorio</a>
+                            <a href="./Profile/{{comment._id}}">{{comment.name}}</a>
                         </div>
-                        <p>Me antoje</p>
-                    </div>
-                    <div class="userComment">
-                        <div class="Photo-perfil">
-                            <div>
-                                <img src="./../../assets/ImageProfile.jpg" alt="">
-                            </div>
-                            <a href="./Profile">Sergio Andres Calderon Osorio</a>
-                        </div>
-                        <p>Me antoje</p>
-                    </div>
-                    <div class="userComment">
-                        <div class="Photo-perfil">
-                            <div>
-                                <img src="./../../assets/ImageProfile.jpg" alt="">
-                            </div>
-                            <a href="./Profile">Sergio Andres Calderon Osorio</a>
-                        </div>
-                        <p>Me antoje</p>
-                    </div>
-                    <div class="userComment">
-                        <div class="Photo-perfil">
-                            <div>
-                                <img src="./../../assets/ImageProfile.jpg" alt="">
-                            </div>
-                            <a href="./Profile">Sergio Andres Calderon Osorio</a>
-                        </div>
-                        <p>Me antoje</p>
+                        <p class="descriptionComment">{{comment.description}}</p>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const { tokenSign } = require("../utils/token");
 
 
 
-const User = require("../models/User");
+const User = require("../models/user");
 
 const loginCtrl = async (req, res, next) => {
   try {
@@ -23,13 +23,21 @@ const loginCtrl = async (req, res, next) => {
       next(boom.unauthorized("Incorret Password"));
     }
 
-    var x = Math.floor(Math.random() * 100000);
+    let session = {
+      id: user.id,  
+      name: user.name,
+      rol: user.rol
+    }
+
+    /*var x = Math.floor(Math.random() * 100000);
     user.verified.state = 0
     user.verified.code = x
 
     user = await User.findByIdAndUpdate(user._id, user)
     await messageLogin(user.email, user._id, x)
-    res.status(200).json({ message: "enviado" })
+    */
+  
+    res.status(200).json(session)
 
   } catch (e) {
     next(boom.badRequest(e));
@@ -38,8 +46,6 @@ const loginCtrl = async (req, res, next) => {
 
 const message = async (req, res, next) => {
   try {
-
-
     const { id } = req.params;
 
     var user = await User.findById(id);

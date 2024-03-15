@@ -1,47 +1,49 @@
+import { Person } from "./survey";
+
 export class User{
 
-  _id:String ;
-  name:String;
-  email:String;
-  password:String;
-  rol:String;
-  files_id:Array<String>;
-  post_id:Array<String>;
+  _id:string ;
+  name:string;
+  email:string;
+  password:string;
+  rol:string;
+  files_id:Array<string>;
+  post_id:Array<string>;
   bloq:Array<{
     day:Array<number>;
   }>;
-  services:Array<String>;
-  booking:Array<String>;
-  code:String;
-  active:String;
-  description:String;
-  category:String;
-  locate:String;
-  link:String;
-  Followers:Array<String>;
-  Follows:Array<String>;
+  services:Array<string>;
+  booking:Array<string>;
+  code:string;
+  active: boolean;
+  description:string;
+  category:string;
+  locate:string;
+  link:string;
+  followers:Array<string>;
+  follows:Array<Person>;
 
   constructor(
-    _id:String = "",
-    name:String = "",
-    email:String = "",
-    password:String = "",
-    rol:String = "",
-    files_id:Array<String> = [],
-    post_id:Array<String> = [],
+    _id:string = "",
+    name:string = "",
+    email:string = "",
+    password:string = "",
+    rol:string = "",
+    files_id:Array<string> = [],
+    post_id:Array<string> = [],
     bloq:Array<{
       day:Array<number>,
     }> = [],
-    services:Array<String> = [],
-    booking:Array<String> = [],
-    code:String = "",
-    active:String = "",
-    description:String = "",
-    category:String = "",
-    locate:String = "",
-    link:String = "",
-    Followers:Array<String> = [],
-    Follows:Array<String> = []
+    services:Array<string> = [],
+    booking:Array<string> = [],
+    code:string = "",
+    active: boolean = false,
+    description:string = "",
+    category:string = "",
+    locate:string = "",
+    link:string = "",
+    followers:Array<string> = [],
+    follows:Array<Person> = []
     ){
       this._id = _id;
       this.name = name;
@@ -59,7 +61,12 @@ export class User{
       this.category = category;
       this.locate = locate;
       this.link = link;
-      this.Followers = Followers;
-      this.Follows = Follows;
+      this.followers = followers;
+      this.follows = follows;
   }
+}
+
+export interface userLogin{
+  email: string;
+  password: string;
 }

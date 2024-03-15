@@ -7,14 +7,18 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { ProfileComponent } from './profile/profile.component';
 import { MakePostComponent } from './make-post/make-post.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SurveyComponent } from './survey/survey.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
     {path: 'Home', component: HomeComponent},
-    {path: 'Postview', component: PostViewComponent},
+    {path: 'Postview/:id', component: PostViewComponent},
     {path: 'Forget-password', component: ForgetPasswordComponent},
     {path: 'Recovery', component: RecoveryPasswordComponent},
     {path: 'Login', component: LoginRegisterComponent},
-    {path: 'Profile', component: ProfileComponent},
-    {path: 'makePost', component: MakePostComponent},
-    {path: 'editProfile', component: EditProfileComponent},
+    {path: 'Profile/:id', component: ProfileComponent},
+    {path: 'makePost/:id', component: MakePostComponent},
+    {path: 'editProfile/:id', component: EditProfileComponent},
+    {path: 'survey', component: SurveyComponent},
+    {path: 'search', component: SearchComponent}
 ];

@@ -1,82 +1,63 @@
 const Joi = require('joi');
 
 const id = Joi.string();
+const name = Joi.string();
 const email = Joi.string().email();
-const dni = Joi.number().integer().min(0).max(9999999999);
-const password = Joi.string().min(8).max(20);
-const name = Joi.string().min(8).max(20);
-const city = Joi.string().min(5).max(20)
-const phone = Joi.number().integer().min(0).max(9999999999)
-const shop = Joi.any()
+const password = Joi.string();
+const rol = Joi.string();
+const files_id = Joi.array().items(Joi.string());
+const post_id = Joi.array().items(Joi.string());
+const bloq = Joi.array().items(Joi.number().integer().min(0).max(9999999999));
+const services = Joi.array().items(Joi.string());
+const booking = Joi.array().items(Joi.string());
+const code = Joi.string();
+const active = Joi.boolean();
+const description = Joi.string();
+const category = Joi.string();
+const locate = Joi.string();
+const link = Joi.string();
+const followers = Joi.array().items(Joi.string());
+const follows = Joi.array().items(Joi.string());
+
 
 const createUserSchema = Joi.object({
   email: email.required(),
-  dni: dni.required(),
-  password: password.required(),
   name: name.required(),
-  phone: phone.required(),
-  shop:shop.required()
+  password: password.required(),
 });
 
-const LoginUserSchema  = Joi.object({
+const loginUserSchema  = Joi.object({
   email: email.required(),
   password: password.required(),
-});
-
-const updateUserSchema = Joi.object({
-  email: email,
-  dni: dni,
-  password: password,
-  city: city,
-  phone: phone,
 });
 
 const getUserSchema = Joi.object({
-  shopid:shop.required(),
-  id: id.required(),
-});
+  email: email.required(),
+  name: name.required(),
+  password: password.required(),
+  rol: rol.required(),
+  files_id: files_id.required(),
+  post_id: post_id.required(),
+  bloq: bloq.required(),
+  services: services.required(),
+  booking: booking.required(),
+  code: code.required(),
+  active: active.required(),
+  description: description.required(),
+  category: category,
+  locate: locate.required(),
+  link: link.required(),
+  followers: followers.required(),
+  follows: follows.required()
+})
 
-
-//!-------------------------------------
-
-const idshop = Joi.string();
-const emailshop = Joi.string().email();
-const nitshop = Joi.string().min(2).max(20);
-const nameshop = Joi.string().min(2).max(20);
-const addresshop = Joi.string().min(5).max(20)
-const phoneshop = Joi.number().integer().min(0).max(9999999999)
-
-const ShopSchema = Joi.object({
-  email: emailshop.required(),
-  nit: nitshop.required(),
-  name: nameshop.required(),
-  addres: addresshop.required(),
-  phone: phoneshop.required(),
-});
-
-
-
-
-const createAdmonSchema = Joi.object({
+const updateUserSchema = Joi.object({
   email: email.required(),
   password: password.required(),
-  name: name.required(),
-  phone: phone.required(),
-  shop: ShopSchema.required(),
-});
+  description: description.required(),
+  category: category,
+  locate: locate.required(),
+  link: link.required(),
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = { createUserSchema, updateUserSchema, getUserSchema, LoginUserSchema , createAdmonSchema}
+module.exports = { createUserSchema, updateUserSchema, getUserSchema, loginUserSchema}

@@ -8,21 +8,21 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form [formGroup]="formRegister" (submit)="signIn()">
                 <h2>Registro</h2>
-                <input type="text" placeholder="Nombre">
-                <input type="email" placeholder="Correo electronico">
-                <input type="password" placeholder="Contraseña">
-                <button>Registrarse</button>
+                <input formControlName="name" type="text" placeholder="Nombre">
+                <input formControlName="email" type="email" placeholder="Correo electronico">
+                <input formControlName="password" type="password" placeholder="Contraseña" >
+                <button [disabled]="!formRegister.valid">Registrarse</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form [formGroup]="formLogin" (submit)="login()">
                 <h2>Iniciar sesión</h2>
-                <input type="email" placeholder="Correo electronico">
-                <input type="password" placeholder="Contraseña">
+                <input formControlName="email" type="email" placeholder="Correo electronico" required>
+                <input formControlName="password" type="password" placeholder="Contraseña" required>
                 <a href="/Forget-password">¿Olvidaste tu contraseña?</a>
-                <button>Iniciar</button>
+                <button [disabled]="!formLogin.valid">Iniciar</button>
             </form>
         </div>
         <div class="toggle-container">

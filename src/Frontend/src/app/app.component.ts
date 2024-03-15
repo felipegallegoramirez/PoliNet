@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,10 +8,54 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'PoliNet';
+  idUser: String = "";
   contador:number = 0;
-  
+  rol: String = "";
+
+  ngOnInit(): void{
+    this.HideButton();
+    this.closeSession();
+    this.authUser();
+    this.CheckUsers();
+  }
+  CheckUsers() {
+
+    let buttonMeetings = document.getElementById('button2-meetings');
+    let x = localStorage.getItem('User');
+
+    if (x != null) {
+      let UserLocalStorage = JSON.parse(x);
+      this.rol = UserLocalStorage.rol;
+
+      switch (this.rol) {
+        case "userRecurrent":
+          buttonMeetings !.style.display = 'none';
+          
+          break;
+        case "enterprise":
+          buttonMeetings !.style.display = 'flex';
+          break;
+        case "teacher":
+          buttonMeetings !.style.display = 'flex';
+          break;
+      }
+    }
+  }
+
+  /** Función para visitar perfil con localstorage */
+  authUser(){
+    let x = localStorage.getItem("User");
+
+    if(x!=null){
+      let User = JSON.parse(x);
+      this.idUser = User.id;
+    }
+  }
+  /** Fin función */
+
+
   CloseSideBar(){
     let box = document.getElementById('SideBar');
     let words = document.getElementsByClassName('LinksWord') as HTMLCollectionOf<HTMLElement>;
@@ -35,4 +79,23 @@ export class AppComponent {
       this.contador--;
     }
   }
+
+  HideButton(){
+    let x = localStorage.getItem('User');
+    let ButtonLogIn = document.getElementById('Log-in');
+    let ButtonSignOut = document.getElementById('Sign-out');
+    if(x!=null){
+      ButtonLogIn!.style.display = "none";
+      ButtonSignOut!.style.display= "block";
+    }
+  }
+  closeSession(){
+    let ButtonSignOut = document.getElementById('Sign-out');
+    ButtonSignOut?.addEventListener('click',() => {
+     localStorage.removeItem('User')
+     window.location.replace('http://localhost:4200/Login')
+    })
+  }
+
+
 }

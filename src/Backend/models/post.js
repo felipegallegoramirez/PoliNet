@@ -7,25 +7,25 @@ const StorageScheme = new mongoose.Schema(
       type: String,
       required: true,
     },
-    images: [{
+    image:{
       type: String,
-      required: true,
-    }],
+
+    },
     creator_image: {
       type: String,
-      required: true,
-    },
-    creator_id: {
-      type: String,
-      required: true,
+      
     },
     creator_name: {
       type: String,
-      required: true,
+
     },
-    content: {
+    creator_id: {
       type: String,
-      required: true,
+      
+    },
+    creator_name: {
+      type: String,
+      
     },
     description: {
       type: String,
@@ -34,25 +34,25 @@ const StorageScheme = new mongoose.Schema(
     likes: [{
       id: {
         type: String,
-        required: true,
+        
       },
       name: {
         type: String,
-        required: true,
+        
       }
     }],
-    comment: [{
+    comments: [{
       id: {
         type: String,
-        required: true,
+        
       },
       name: {
         type: String,
-        required: true,
+        
       },
       description: {
         type: String,
-        required: true,
+        
       }
     }],
   },
