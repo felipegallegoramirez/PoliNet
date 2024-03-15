@@ -19,8 +19,12 @@ const removeExtension = (fileName) => {
 
 // se mete dentro de la carpeta actual y lee todos los archivos
 fs.readdirSync(pathRouter).filter((file) => {
+
+    //booking.js
     const name = removeExtension(file)
+    //booking
     //Verifica que el archivo a leer no sea este mismo
+    //localhost:3000/api/booking
     if (name!=="index") {
         router.use(`/api/${name}`, require(`./${name}`))
         console.log('CARGAR RUTA ---->', name)
@@ -28,7 +32,13 @@ fs.readdirSync(pathRouter).filter((file) => {
     }
 })
 
+<<<<<<< HEAD
 router.use('/public/images', express.static(path.resolve('./storage')));
+=======
+
+// ! localhost:3000/public/imagenes/123asdasd.png
+router.use('/public/images', express.static(path.resolve('./storage/r')));
+>>>>>>> 987aac9ccbaa3c60f867d4620a03da10e67ae36a
 //router.use('/public/images', (req,res)=>{res.status(200).send({asd:path.resolve('./storage/r')})});
 
 // Si se le pasa otra url

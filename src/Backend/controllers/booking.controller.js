@@ -30,7 +30,6 @@ BookingCtrl.getBookingDay = async (req, res, next) => {
     try{
         const { day,month,service,profesional } = req.params;
         if(profesional=="any"){
-            console.log("any")
             const save = await Booking.find({day:day,month:month,service:service});
             const re= save.map(x=>({id:x["profesional"],hour:x["hour"]}))
             res.status(200).send(re)
