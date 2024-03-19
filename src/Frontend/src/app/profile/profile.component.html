@@ -34,7 +34,7 @@
     <section class="photo-description-follow">
         <div class="Information">
             <div class="photo-follow">
-                <img src="./../../../../Backend/storage/{{user.files_id[0]}}" alt="">
+                <img src="http://localhost:3000/public/images/{{user.files_id[0]}}" alt="">
                 <button id="followMeButton" class="followMe" (click)="Follow()">Seguir</button>
             </div>
             <div class="totalInfo">
@@ -63,14 +63,14 @@
                 <button class="ButtonBasic" id="deletePost" (click)="SubEnterpriseOpen('modalDeletePost')">Eliminar post</button>
             </div>
             <div class="EnterprisePub ContentButton" id="EnterprisePub">
-                <a class="ButtonBasicA" href="./../../../../Backend/storage/{{user.files_id[1]}}" download="{{user.files_id[1]}}">Hoja de vida</a>
+                <a class="ButtonBasicA" href="http://localhost:3000/public/images/{{user.files_id[1]}}" download="http://localhost:3000/public/images/{{user.files_id[1]}}">Hoja de vida</a>
             </div>
             <div class="MentorPriv ContentButton3" id="MentorPriv">
                 <button class="ButtonBasic" id="editProfile">Editar perfil</button>
                 <button class="ButtonBasic" (click)="SubEnterpriseOpen('modalSubEnter')">Agregar empresario</button>
             </div>
             <div class="MentorPub ContentButton" id="MentorPub">
-                <a class="ButtonBasicA" href="./../../../../Backend/storage/{{user.files_id[1]}}" download="{{user.files_id[1]}}">Hoja de vida</a>
+                <a class="ButtonBasicA" href="http://localhost:3000/public/images/{{user.files_id[1]}}" download="http://localhost:3000/public/images/{{user.files_id[1]}}">Hoja de vida</a>
             </div>
             <div class="UserRecurrent ContentButton" id="UserRecurrent">
                 <button class="ButtonBasic" id="editProfile">Editar perfil</button>
@@ -95,11 +95,10 @@
                 <div>
                     <div class="Photo-perfil">
                         <div>
-                            <img src="./../../assets/ImageProfile.jpg" alt="">
+                            <img src="http://localhost:3000/public/images/{{user.files_id[0]}}" alt="">
                         </div>
                         <h3>{{post.creator_name}}</h3>
                     </div>
-                    
                 </div>
                 <div class="img-post">
                     <img id="ImagenLoad" src="http://localhost:3000/public/images/{{post.image}}" alt="">

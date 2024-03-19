@@ -5,7 +5,7 @@
             <div class="img-post photo-follow">
                 <h3>Cambiar imagen de perfil</h3>
                 <img class="DefaultImage" (click)="photoInput.click()" [src]="photoSelected">
-                <input formControlName="filePhotoProfile" #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
+                <input  formControlName="filePhotoProfile" #photoInput (change)="onPhotoSelected($event)" id="foto" type="file" accept="image/png, image/png" style="visibility: hidden;"/>
             </div>
             
             <div class="totalInfo">
@@ -19,7 +19,7 @@
                 </div>
                 <div id="fileUpdate">
                     <h3>Aquí puedes cargar tu hoja de vida como empresa o mentor</h3>
-                    <input formControlName="filePdf" type="file" accept="application/pdf"/>
+                    <input id="pdf" formControlName="filePdf" type="file" accept="application/pdf"/>
                 </div>
                 <div class="extraInfo" id="extraInfo">
                     <h3>Escribe una categoria a la que más se apegue tu negocio</h3>

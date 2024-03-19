@@ -24,6 +24,7 @@ export class EditProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.CheckUsers();
+    this.authSession();
     this.activateRoute.params.subscribe(params => {
       this.idsession = params['id'];
 
@@ -37,7 +38,17 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
-  
+      
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
+
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
 
   /** función para actualizar datos */
   formUpdate = new FormGroup({
@@ -56,8 +67,8 @@ export class EditProfileComponent implements OnInit {
     let email = this.userGets.email;
     let password = this.userGets.password;
     let rol = this.userGets.rol;
-    let filePhotoProfile = "";
-    let filePdf = "";
+    let filePhotoProfile = <HTMLInputElement> document.getElementById("foto");
+    let filePdf = <HTMLInputElement> document.getElementById('pdf');
     let description = this.formUpdate.value.description || "";
     let category = this.formUpdate.value.category || "";
     let locate = this.formUpdate.value.locate || "";
@@ -72,9 +83,6 @@ export class EditProfileComponent implements OnInit {
     let followers: string[] = this.userGets.followers;
     let follows: Person[] = this.userGets.follows;
 
-
-    files_id.push(filePhotoProfile);
-    files_id.push(filePdf)
 
     const user: User = {
       _id: _id,
@@ -96,10 +104,15 @@ export class EditProfileComponent implements OnInit {
       follows: follows,
       link: link,
     }
-
+    console.log(filePhotoProfile)
       this.userService.putUser(user, this.idsession).subscribe(res => {
+        if(filePhotoProfile.files){
+          this.userService.putProfilePhoto(filePhotoProfile.files[0], this.idsession).subscribe(res => {})
+        }
+        if(filePdf.files){
+          this.userService.putProfilepdf(filePdf.files[0], this.idsession).subscribe(res => {})
+        }
         if (res) {
-
           window.alert("Actualizados los datos")
           this.formUpdate.reset();
           window.location.replace("http://localhost:4200/Profile/" + this.userGets._id)

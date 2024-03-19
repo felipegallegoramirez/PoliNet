@@ -42,7 +42,8 @@
 
 }
 .photo-follow img{
-    border-radius: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
     width: 20%;
     object-fit: cover;
 }
@@ -230,15 +231,16 @@
     height: 52px;
     align-items: center;
 }
-.Photo-perfil div{
-    width: 8%;
-    
+.Photo-perfil div {
+    width: 7%;
+
 }
-.Photo-perfil img{
+
+.Photo-perfil div img {
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    border-radius: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1 ;
 }
 .Photo-perfil h3{
     margin-left: 10px;

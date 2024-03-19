@@ -17,15 +17,15 @@
 }
 
 .Photo-perfil div {
-    width: 8%;
+    width: 7%;
 
 }
 
-.Photo-perfil img {
+.Photo-perfil div img {
     width: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    border-radius: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1 ;
 }
 
 .Photo-perfil h3 {

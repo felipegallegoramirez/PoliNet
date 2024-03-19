@@ -95,12 +95,13 @@ button img{
     padding: 0 25px;
 }
 .imageProfile{
-    width: 60px;
+    width: 90%;
     margin-right: 10px;
 }
 .imageProfile img{
+    width: 90%;
     border-radius: 100px;
-    width: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 .ContainerProfile:hover{

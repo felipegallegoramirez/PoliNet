@@ -24,6 +24,7 @@ export class MakePostComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.authSession();
     this.activateRoute.params.subscribe(params => {
       this.idsession = params['id'];
 
@@ -34,6 +35,19 @@ export class MakePostComponent implements OnInit{
     });  
   }
   
+      
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
+
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
+
+
   /** funcion para post */
 
   formMakePost = new FormGroup({
@@ -65,7 +79,7 @@ export class MakePostComponent implements OnInit{
     let _idPost = "";
     let title = this.formMakePost.value.title;
     let photoPost =  "";
-    let creator_image = "";
+    let creator_image = this.userGets.files_id[0];
     let creator_name = this.userGets.name;
     let creator_id = this.userGets._id;
     let descriptionPost = this.formMakePost.value.description;

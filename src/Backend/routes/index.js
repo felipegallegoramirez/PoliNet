@@ -32,13 +32,7 @@ fs.readdirSync(pathRouter).filter((file) => {
     }
 })
 
-<<<<<<< HEAD
 router.use('/public/images', express.static(path.resolve('./storage')));
-=======
-
-// ! localhost:3000/public/imagenes/123asdasd.png
-router.use('/public/images', express.static(path.resolve('./storage/r')));
->>>>>>> 987aac9ccbaa3c60f867d4620a03da10e67ae36a
 //router.use('/public/images', (req,res)=>{res.status(200).send({asd:path.resolve('./storage/r')})});
 
 // Si se le pasa otra url

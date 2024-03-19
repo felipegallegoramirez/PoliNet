@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const post = require("../controllers/post.controller")
-const { uploadimage, filemodify } = require("../utils/savestorage")
+const { uploadimage } = require("../utils/savestorage")
 
 
 router.get("/", post.getPosts);

@@ -34,4 +34,25 @@ export class UserService {
   putUser(user: User,id:string) {
     return this.http.put(this.apiUrl + `/editUser/${id}`,user);
   }
+
+  SendCode(email: string, user: User){
+    return this.http.post(this.apiUrl + `/sendCode/${email}`, user)
+  }
+
+  putProfilePhoto(file: File, id: string){
+    const fd = new FormData();
+
+    fd.append('image', file)
+
+    return this.http.put(this.apiUrl + `/updateIMG/${id}`, fd)
+  }
+
+  putProfilepdf(file: File, id: string){
+    const fd = new FormData();
+
+    fd.append('pdf', file);
+
+    return this.http.put(this.apiUrl + `/updatePDF/${id}`, fd)
+  }
+  
 }

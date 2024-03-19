@@ -27,12 +27,14 @@ export class ProfileComponent implements OnInit {
   count:number = 0;
 
 
-  constructor(private postService: PostService, private userService: UserService, private activateRoute:ActivatedRoute){
+  constructor(private postService: PostService, 
+    private userService: UserService, 
+    private activateRoute:ActivatedRoute){
 
   }
 
   ngOnInit(): void {
-    
+    this.authSession();
     this.buttons();
     this.gotoEdit("editProfile");
     this.ocultarSiSinSrc("ImagenLoad");
@@ -94,6 +96,18 @@ export class ProfileComponent implements OnInit {
     })
   }
   /** fin funcion */
+
+      
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
+
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
   /** función eliminar post */  
 
   formDelete = new FormGroup({

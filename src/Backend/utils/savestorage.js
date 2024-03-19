@@ -21,7 +21,17 @@ const storage = multer.diskStorage({
     }
   };
 
+
+  const fileFilterPDF = function (req, file, cb) {
+    // Solo permitir archivos con extensiones PDF
+    if (file.mimetype === 'application/pdf') {
+      cb(null, true);
+    } else {
+      cb(new Error('El archivo no es un PDF'), false);
+    }
+  };
   
   const uploadimage = multer({ storage: storage , fileFilter: fileFilterImage})
+  const uploadpdf = multer({ storage: storage , fileFilter: fileFilterPDF})
 
-  module.exports = { uploadimage };
+  module.exports = { uploadimage, uploadpdf };

@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     }
   }
   /** Fin función */
-
+  
 
   CloseSideBar(){
     let box = document.getElementById('SideBar');

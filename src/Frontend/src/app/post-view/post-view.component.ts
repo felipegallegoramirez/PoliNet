@@ -27,6 +27,7 @@ export class PostViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authSession();
     let likeIcon = document.getElementById("likeIcon");
     let x = localStorage.getItem("User");
     if(x!=null){
@@ -52,6 +53,20 @@ export class PostViewComponent implements OnInit {
     
     
   }
+
+    
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
+
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
+
+
   /** Funcion sobre likes */
   likeit(){
     let likeIcon = document.getElementById("likeIcon");

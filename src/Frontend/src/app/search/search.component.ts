@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authSession();
       this.getUsers();
       this.search()
   }
@@ -35,7 +36,16 @@ export class SearchComponent implements OnInit {
     })
   }
   /** fin función */
+    
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
 
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
 
   /** Funcion para hacer las busquedas */
  

@@ -1,6 +1,8 @@
+const Post = require("../models/post");
 const User = require("../models/user");
-const {encrypt} = require("../utils/encript")
+const { encrypt } = require("../utils/encript")
 const UserCtrl = {};
+const { messageLogin } = require("../utils/emailprefabs/authemail");
 
 
 UserCtrl.getUsers = async (req, res, next) => {
@@ -99,7 +101,41 @@ UserCtrl.createUser = async (req, res, next) => {
 
 };
 
+UserCtrl.SendCode = async (req, res, next) => {
+    try{
+        let user = await User.findOne({email: req.body.email})
+        var x = Math.floor(Math.random() * 100000);
+        user.verified.active = true;
+        user.verified.code = x
+        
+        user = await User.findByIdAndUpdate(user._id, user)
+        await messageLogin(user.email, user._id, x)
+        res.status(200).send({
+            mesagge: "Enviado"
+        })
+    }catch(err){
+        res.status(400).send({
+            message: "No se ha completado el envio"
+        })
+    }
+}
 
+UserCtrl.putPassword = async (req, res, next) => {
+    try{
+        let user = user.findOne({email: req.body.email})
+        if(user.code == req.body.code && user.active == true){
+            const { password } = req.params;
+            user.password = password
+            user.active = false
+            const save = await user.findByIdAndUpdate(user._id, user)
+            res.status(200).send(save)
+        }else{
+            res.status(401).send(err)
+        }
+    }catch(err){
+        res.status(400).send(err)
+    }
+}
 
 UserCtrl.putRolUser = async (req, res, next) => {
     try{
@@ -110,7 +146,37 @@ UserCtrl.putRolUser = async (req, res, next) => {
         res.status(400).send(err)
     }
 }
+UserCtrl.putPhotoProfile = async (req, res, next) => {
+    try{
+        const image = req.file.filename;
+        const { id } = req.params;
+        const user = await User.findById(id);
+        for(let i = 0; i < user.post_id.length; i++){
+            await Post.findByIdAndUpdate(user.post_id[i], {creator_image: image});
+        }
+        user.files_id[0] = image;
+        let save = await User.findByIdAndUpdate(id, user);
 
+        res.status(200).send(save);
+    }catch(err){
+        res.status(400).send(err);
+    }
+}
+
+UserCtrl.putPdfProfile = async (req, res, next) => {
+    try{
+        const pdf = req.file.filename;
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        user.files_id[1] = pdf;
+
+        let save = await User.findByIdAndUpdate(id, user);
+        res.status(200).send(save);
+    }catch(err){
+        res.status(400).send(err);
+    }
+}
 
 UserCtrl.editUser = async (req, res, next) => {
     try{

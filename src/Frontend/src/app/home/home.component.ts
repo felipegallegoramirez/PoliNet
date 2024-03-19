@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authSession();
     let x = localStorage.getItem('User');
     if(x!=null){
       let UserLocalStorage = JSON.parse(x);
@@ -31,6 +32,17 @@ export class HomeComponent implements OnInit {
     this.getAllPosts();
     this.getUser();
   }
+  
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.length;
+
+    if(x==0){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
   /** funcion Pintar todos los post */
 
   getAllPosts(){
