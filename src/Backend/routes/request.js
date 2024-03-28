@@ -4,6 +4,7 @@ const request = require("../controllers/request.controller")
 
 router.get("/", request.getRequests);
 router.post("/", request.createRequest); 
+router.get("/requestvalid/:iduser", request.findRequestbyIduser)
 router.get("/:id", request.getRequest); 
 router.put("/:id",request.editRequest);
 router.delete("/:id", request.deleteRequest);

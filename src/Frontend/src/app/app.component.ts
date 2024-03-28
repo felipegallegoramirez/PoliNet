@@ -20,9 +20,12 @@ export class AppComponent implements OnInit {
     this.authUser();
     this.CheckUsers();
   }
-  CheckUsers() {
 
+  CheckUsers() {
     let buttonMeetings = document.getElementById('button2-meetings');
+    let linkPub = document.getElementById('LinkPub');
+    let linkPriv = document.getElementById('LinkPriv');
+
     let x = localStorage.getItem('User');
 
     if (x != null) {
@@ -31,14 +34,17 @@ export class AppComponent implements OnInit {
 
       switch (this.rol) {
         case "userRecurrent":
-          buttonMeetings !.style.display = 'none';
-          
+          buttonMeetings !.style.display = 'none';          
           break;
         case "enterprise":
           buttonMeetings !.style.display = 'flex';
           break;
         case "teacher":
           buttonMeetings !.style.display = 'flex';
+          break;
+        case "Admon":
+          linkPub!.style.display = 'none';
+          linkPriv!.style.display = 'flex';
           break;
       }
     }

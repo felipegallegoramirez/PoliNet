@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Person } from '../../models/survey';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-forget-password',
   standalone: true,
@@ -12,7 +13,8 @@ import { Person } from '../../models/survey';
 })
 export class ForgetPasswordComponent implements OnInit {
   
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService,
+    private noti: MatSnackBar){}
 
   ngOnInit(): void {
       
@@ -65,12 +67,20 @@ export class ForgetPasswordComponent implements OnInit {
         link: link,
     }
 
-    this.userService.SendCode(email,user).subscribe((res) => {
-      if(res){
-        window.alert("Se ha enviado un correo a tu correo electronico")
-      }else{
-        window.alert("No se ha podido enviar el correo de confirmación puede que no este registrado o haya habido un error ")
-      }
+    this.userService.SendCode(email).subscribe(res => {
+      this.noti.open('Te llegara un correo con un enlace para cambiar tu contraseña al correo electronico que escribiste', 'Cerrar', {
+        panelClass: ["custom-snackbar1"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+    }, err => {
+      this.noti.open('Este correo no existe en PoliNet, crea una cuenta', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
     })
   }
 }

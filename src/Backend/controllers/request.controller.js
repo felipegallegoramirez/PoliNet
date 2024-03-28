@@ -13,20 +13,33 @@ RequestCtrl.getRequests = async (req, res, next) => {
     }
 };
 
+RequestCtrl.findRequestbyIduser = async (req, res, next) => {
+    try{
+        let { id } = req.params.iduser;
+        let valid = false;
+        const save = await Request.findOne({id})
+        if(save){
+            valid = true
+        }else{
+            valid = false
+        }
+        res.status(200).send(valid)
+    }catch(err){
+        res.status(200).send(err)
+    }
+}
 
 RequestCtrl.createRequest = async (req, res, next) => {
     try{
-        const { iduser,name,answers} = req.body;
+        const { iduser,name,cellphone} = req.body;
 
-        const body = { iduser,name,answers};
+        const body = { iduser,name,cellphone};
         var save= await Request.create(body);
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
 
     }
-
-
 };
 
 RequestCtrl.getRequest = async (req, res, next) => {

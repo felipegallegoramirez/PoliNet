@@ -1,10 +1,10 @@
-import { AfterViewInit,Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/user.service';
-import { User,userLogin } from '../../models/user';
+import { User, userLogin } from '../../models/user';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Person } from '../../models/survey';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,48 +16,67 @@ import { Person } from '../../models/survey';
 })
 export class LoginRegisterComponent implements OnInit, AfterViewInit {
 
-  constructor(private elementRef: ElementRef, private loginService: LoginService, private userService: UserService) {
+  constructor(private noti: MatSnackBar, private elementRef: ElementRef, private loginService: LoginService, private userService: UserService) {
 
   }
 
   ngOnInit(): void {
-      this.authSession();
+    this.authSession();
   }
 
-  
+  /** función para verificar si tiene caracter especial o mayuscula*/
+
+  ValPassword(password:string): boolean{
+    const mayus: RegExp = /[A-Z]/;
+    const specialCaracters: RegExp = /[@_!#$%^&*()<>?/\|}{~:]/;
+
+    // Verificar si hay al menos una mayúscula y un carácter especial
+    const hasMayus: boolean = mayus.test(password);
+    const hasSpecialCaracter: boolean = specialCaracters.test(password);
+    return hasMayus && hasSpecialCaracter;
+  }
+
+
   /* Inicio Registro */
 
   formRegister = new FormGroup({
-    name: new FormControl('',[Validators.required]),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required])
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
   })
-  signIn(): void{
-    
+  signIn(): void {
+    if (this.formRegister.invalid) {
+
+      this.noti.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+      return;
+    }
     let _id = "";
-    let name = this.formRegister.value.name;
-    let email = this.formRegister.value.email;
-    let password = this.formLogin.value.password;
+    let name = this.formRegister.value.name || "";
+    let email = this.formRegister.value.email || "";
+    let password = this.formRegister.value.password;
     let rol = "userRecurrent";
-    let files_id:string[] = [];
-    let post_id:string[] = [];
-    let bloq:Array<any> = [{
-      day:Array<number>,
+    let files_id: string[] = [];
+    let post_id: string[] = [];
+    let bloq: Array<any> = [{
+      day: Array<number>,
     }];
-    let services:string[] = [];
-    let booking:string[] = [];
-    let code= "";
+    let services: string[] = [];
+    let booking: string[] = [];
+    let code = "";
     let active = false;
     let description = "";
     let category = "";
     let locate = "";
     let link = "";
-    let followers:string[]  = [];
+    let followers: string[] = [];
     let follows: Person[] = [];
-
-    if(name && email && password){
+    if(password && this.ValPassword(password)){
       const user: User = {
-
         _id: _id,
         name: name,
         email: email,
@@ -79,13 +98,31 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
       };
 
       this.userService.postUser(user).subscribe(res => {
-        if(res){
-          window.alert("Registrado");
+        if (res) {
+          this.noti.open('Usuario registrado', 'Cerrar', {
+            panelClass: ["custom-snackbar1"],
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            duration: 5000
+          });
           this.formRegister.reset();
-        }else{
-          window.alert("Este email ya esta registrado")
         }
+      }, err => {
+        this.noti.open('Este correo electronico ya esta en uso', 'Cerrar', {
+          panelClass: ["custom-snackbar"],
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 5000
+        });
       })
+    }else{
+      this.noti.open('La contraseña debera tener un caracter especial y una mayuscula', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+      return
     }
   }
 
@@ -94,45 +131,57 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
 
   /* Inicio login  */
   formLogin = new FormGroup({
-    email: new FormControl('',[Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required])
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
   });
 
-  login(): void{
-    let email = this.formLogin.value.email;
-    let password = this.formLogin.value.password;
+  login(): void {
 
-    if (email && password) {
-      const user: userLogin = {
-        email: email,
-        password: password
-      };
+    if (this.formLogin.invalid) {
 
-      this.loginService.auth(user).subscribe(res => {
-        let userTemporal = res as userLogin;
-
-        if (userTemporal) {
-          localStorage.setItem('User', JSON.stringify(userTemporal));
-          window.location.replace('http://localhost:4200/Home')
-        } else {
-          console.log("No existe");
-        }
-        this.formLogin.reset();
+      this.noti.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
       });
-    }else{
-      console.log("no existe")
+      return;
     }
+    let email = this.formLogin.value.email || "";
+    let password = this.formLogin.value.password || "";
+
+    const user: userLogin = {
+      email: email,
+      password: password
+    };
+
+    this.loginService.auth(user).subscribe(res => {
+      let userTemporal = res as userLogin;
+      if (userTemporal) {
+        localStorage.setItem('User', JSON.stringify(userTemporal));
+        window.location.replace('http://localhost:4200/Home')
+      }
+      this.formLogin.reset();
+    }, err => {
+      this.noti.open('Error autenticando', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+    });
+
   }
 
 
-  /*  Fin login  */ 
+  /*  Fin login  */
 
   /* Verificar si hay una sesión activa */
 
-  authSession():void{
+  authSession(): void {
     let x = localStorage.getItem('User');
 
-    if(x!=null){
+    if (x != null) {
       window.location.replace('http://localhost:4200/Home')
     }
   }

@@ -10,10 +10,11 @@ router.get("/search/", user.SearchUser);
 router.get("/service/:id", user.getUsersService);
 router.get("/unique/:id", user.getUser); 
 router.get("/rol/:email", user.putRolUser);
+router.get("/rolTeacher/:id", user.putRolTeacherUser)
 router.put("/editUser/:id",user.editUser);
 router.put("/putPassword/:id", user.putPassword);
 router.delete("/:id", user.deleteUser);
-router.post("/sendCode/:email", user.SendCode);
+router.get("/sendCode/:email", user.SendCode);
 router.put("/updateIMG/:id",uploadimage.single("image"), user.putPhotoProfile);
 router.put("/updatePDF/:id",uploadpdf.single("pdf"), user.putPdfProfile);
 

@@ -19,6 +19,10 @@ export class UserService {
     return this.http.get<User>(this.apiUrl + `/unique/${id}`);
   }
 
+  deleteUser(id:string){
+    return this.http.delete(this.apiUrl + `/${id}`)
+  }
+
   getUsers(){
     return this.http.get<User[]>(this.apiUrl + "/")
   }
@@ -30,13 +34,15 @@ export class UserService {
   putUserRol(email: string){
     return this.http.get(this.apiUrl + `/rol/${email}`)
   }
-  
+  putUserteacherRol(id: string){
+    return this.http.get(this.apiUrl + `/rolTeacher/${id}`)
+  }
   putUser(user: User,id:string) {
     return this.http.put(this.apiUrl + `/editUser/${id}`,user);
   }
 
-  SendCode(email: string, user: User){
-    return this.http.post(this.apiUrl + `/sendCode/${email}`, user)
+  SendCode(email: string){
+    return this.http.get(this.apiUrl + `/sendCode/${email}`)
   }
 
   putProfilePhoto(file: File, id: string){
@@ -53,6 +59,10 @@ export class UserService {
     fd.append('pdf', file);
 
     return this.http.put(this.apiUrl + `/updatePDF/${id}`, fd)
+  }
+
+  putPassword(id: String, user: User){
+    return this.http.put(this.apiUrl + `/putPassword/${id}`, user)
   }
   
 }

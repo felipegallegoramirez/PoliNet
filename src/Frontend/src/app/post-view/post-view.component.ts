@@ -5,6 +5,7 @@ import { Post } from '../../models/post';
 import { Comment } from '../../models/post';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
 import { Person } from '../../models/survey';
 
 @Component({
@@ -20,9 +21,15 @@ export class PostViewComponent implements OnInit {
   count:number = 0;
   idsession: string = "";
   post:Post = new Post();
-  Boxcomments: Comment[] = [];
 
-  constructor( private activatedRoute: ActivatedRoute, private postService: PostService){
+  BoxComments: Array<{
+    _id:string,
+    name:string,
+    description:string,
+    image: string,
+  }> = []
+
+  constructor( private userService: UserService, private activatedRoute: ActivatedRoute, private postService: PostService){
 
   }
 
@@ -41,16 +48,29 @@ export class PostViewComponent implements OnInit {
 
       this.postService.getPostUnique(this.idsession).subscribe((res) => {
         this.post = res as Post;
+        this.post.description = this.post.description.replace(/\n/g, '<br>');
+        document.getElementById('descriptionPost')!.innerHTML = this.post.description
+        
+
         if(this.post.likes.findIndex(x => this.idUser == x._id) != -1){
           this.count = 1;
           likeIcon!.style.fontVariationSettings = "'FILL' 1, 'wght' 400,'GRAD' 0,'opsz' 24"
         }
-        this.Boxcomments = res.comments as Comment[];
+        let x = res.comments as Comment[];
+
+        x.forEach(comment =>{
+          this.userService.getUser(comment._id).subscribe(res =>{
+            console.log(res)
+            this.BoxComments.push({
+              _id: comment._id,
+              name: comment.name,
+              description: comment.description,
+              image: res.files_id[0] || ""
+            })
+          })
+        })
       });
     })
-    console.log(this.post.image)
-    console.log(this.idUser)
-    
     
   }
 
@@ -152,7 +172,7 @@ export class PostViewComponent implements OnInit {
     let _idPost = this.post._id;
     let title = this.post.title;
     let photoPost = this.post.image;
-    let creator_image = "";
+    let creator_image = this.post.creator_image;
     let creator_name = this.post.creator_name;
     let creator_id = this.post.creator_id;
     let descriptionPost = this.post.description;
@@ -163,6 +183,16 @@ export class PostViewComponent implements OnInit {
       comments = []
     }
 
+    this.userService.getUser(this.idUser).subscribe(res => {
+      this.BoxComments.push({
+        _id: _idComment,
+        name: creatorCommentName,
+        description: commentDescription || "",
+        image: res.files_id[0] || ""
+      })
+    })
+
+   
     comments.push(commentSend);
 
     const post: Post = {

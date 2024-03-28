@@ -1,18 +1,20 @@
+<img class="Background" src="./../../assets/fondo.PNG" alt="">
 <div class="SideBar" id="SideBar">
     <div class="Logotype-button">
         <div class="Logotype">
-            <h2>PoliNet</h2>
+            <h2>PoliNet</h2>    
         </div>
         <button class="buttonClose" (click)="CloseSideBar()">
             <img id="Arrow" src="../../assets/Arrow.svg" alt="">
         </button>
     </div> 
     <div class="buttons">
+        
         <div class="button1-perfil">
             <div class="iconPerfil">
                 <img src="./../../assets/Perfil.svg" alt="">
             </div>
-            <div class="ButtonWord" id="ButtonWord"><a class="LinksWord" href="/Profile/{{idUser}}">Perfil</a></div>
+            <div class="ButtonWord" id="ButtonWord"><a id="LinkPub" class="LinksWord" href="/Profile/{{idUser}}">Perfil</a><a id="LinkPriv" class="LinksWord" href="/admon/{{idUser}}">Perfil</a></div>
         </div>
         <div class="button2-meetings" id="button2-meetings">
             <div class="iconMeeting"><img src="./../../assets/Meeting.svg" alt=""></div>
@@ -28,13 +30,8 @@
         </div>
         <div class="button3-home">
             <div class="iconHome"><img src="./../../assets/Home.svg" alt=""></div>
-            <div class="ButtonWord" id="ButtonWord"><a class="LinksWord" href="/Login">Login</a></div>
-        </div>
-        <div class="button3-home">
-            <div class="iconHome"><img src="./../../assets/Home.svg" alt=""></div>
             <div class="ButtonWord" id="ButtonWord"><a class="LinksWord" href="/survey">Survey</a></div>
         </div>
-        
     </div>
     <div class="Config">
         <div class="Line"></div>

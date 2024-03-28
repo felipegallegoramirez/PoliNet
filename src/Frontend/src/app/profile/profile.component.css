@@ -1,12 +1,3 @@
-.Background{
-    position: fixed;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -100;
-}
 /*------------------------------*/
 .body{
     width: 100%;
@@ -51,6 +42,7 @@
     display: none;
     border-radius: 10px;
     margin-top: 120px;
+    margin-right: 10px;
     background-color: var(--c1);
     border: 2px solid transparent;
     color: var(--sw);
@@ -59,6 +51,8 @@
     height: 40px;
     cursor: pointer;
     transition: all .2s linear;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+
 }
 .followMe:hover{
     transition: all .1s ease;
@@ -68,7 +62,7 @@
 }
 .ButtonBasic{
     border-radius: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
     padding: 0 10px;
     background-color: var(--c1);
     text-align: center;
@@ -78,26 +72,37 @@
     height: 40px;
     cursor: pointer;
     transition: all .2s linear;  
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+
 }
 
 .ButtonBasicA{
+    font-size: 17px;
     border-radius: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
     padding: 0 10px;
     background-color: var(--c1);
     text-align: center;
     border: 2px solid transparent;
     color: var(--sw);
     width: fit-content;
-    height: 40px;
+    height: 37px;
     text-decoration: none;
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: all .2s linear;  
+    transition: all .2s linear; 
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+ 
     
 }
 .ButtonBasicA:hover{
+    transition: all .1s ease;
+    background-color: var(--sw);
+    border: 2px solid var(--c2);
+    color: var(--c2);
+}
+button:hover{
     transition: all .1s ease;
     background-color: var(--sw);
     border: 2px solid var(--c2);
@@ -120,7 +125,7 @@
     display: grid;
     justify-content: start;
     gap: 3%;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
 }
 .ContentButton2{
     width: 100%;
@@ -129,7 +134,7 @@
     display: grid;
     justify-content: start;
     gap: 3%;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
 }
 
 .totalInfo{
@@ -270,7 +275,7 @@
 }
 
 /*---------Modal---------*/
-.modalSubEnterprise{
+.modalSubEnterprise, .modalApplyUserRecurrent{
     width: 100%;
     height: 100vh;
     left: 0;
@@ -279,35 +284,49 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 10000;
+    z-index: 1000;
     box-sizing: border-box;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.50);
 }
-.modalSubEnterprise h2{
+.modalSubEnterprise h2, .modalApplyUserRecurrent h2{
     color: var(--c2);
     margin: 5px 0;
 } 
+.BoxModal p{
+    text-align: center;
+}
 input{
     border-radius: 10px;
     padding-left: 15px;
     font-size: 13px;
-    height: 35px;
+    height: 25px;
     width: 250px;
     margin-bottom: 10px;
 
 }
+.modalApplyUserRecurrent button{
+    border-radius: 10px;
+    background-color: var(--c1);
+    border: transparent 2px solid;
+    color: var(--sw);
+    width: 150px;
+    height: 37px;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
 .modalSubEnterprise button{
     border-radius: 10px;
     background-color: var(--c1);
-    border: none;
+    border: transparent 2px solid;
     color: var(--sw);
     width: 100px;
     height: 37px;
     cursor: pointer;
     transition: all .2s linear;
 }
-.modalSubEnterprise button:hover{
+.modalSubEnterprise button:hover, .modalApplyUserRecurrent button:hover {
     transition: all .2s linear;
     background-color: var(--sw);
     border: 2px solid var(--c2);
@@ -353,4 +372,27 @@ input{
 .EnterprisePriv, .EnterprisePub, .MentorPriv, .MentorPub,
 .UserRecurrent{
     display: none;
+}
+
+/* -----notificaciones------- */
+::ng-deep .custom-snackbar1 {
+    border-radius: 2px !important;
+    outline: 2px solid var(--c1);
+    margin-bottom: 100px !important ;
+    --mdc-snackbar-container-color: var(--sw);
+    --mdc-snackbar-supporting-text-color: var(--b);
+}
+
+::ng-deep .custom-snackbar{
+    border-radius: 2px !important;
+    outline: 2px solid var(--r);
+    margin-bottom: 100px !important ;
+    --mdc-snackbar-container-color: var(--sw);
+    --mdc-snackbar-supporting-text-color: var(--b);
+}
+
+
+::ng-deep .custom-snackbar button, ::ng-deep .custom-snackbar1 button{
+    background-color: var(--c1) !important; 
+    color: var(--sw) !important;
 }

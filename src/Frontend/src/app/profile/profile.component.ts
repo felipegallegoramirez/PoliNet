@@ -5,8 +5,11 @@ import { User } from '../../models/user';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { UserService } from '../../services/user.service';
+import { RequestService } from '../../services/request.service';
 import { ActivatedRoute } from '@angular/router';
 import { Person } from '../../models/survey';
+import { Request } from '../../models/request';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +30,9 @@ export class ProfileComponent implements OnInit {
   count:number = 0;
 
 
-  constructor(private postService: PostService, 
+  constructor(private noti: MatSnackBar,
+    private requestService: RequestService,
+    private postService: PostService, 
     private userService: UserService, 
     private activateRoute:ActivatedRoute){
 
@@ -38,6 +43,8 @@ export class ProfileComponent implements OnInit {
     this.buttons();
     this.gotoEdit("editProfile");
     this.ocultarSiSinSrc("ImagenLoad");
+
+    
 
     let followMeButton = document.getElementById('followMeButton');
     let x = localStorage.getItem('User');
@@ -85,21 +92,40 @@ export class ProfileComponent implements OnInit {
   })
 
   putRol(){
+    if (this.formPutRol.invalid) {
+
+      this.noti.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+      return;
+    }
     let emailRol = this.formPutRol.value.emailRol || "";
 
     this.userService.putUserRol(emailRol).subscribe((res) => {
-      if(res){
-        window.alert('Se ha cambiado el rol')
-      }else{
-        window.alert('No se ha podido cambiar el rol')
-      }
+      this.noti.open('Se ha cambiado el rol', 'Cerrar', {
+        panelClass: ["custom-snackbar1"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+      this.ModalClose("modalSubEnter")
+    }, err => {
+      this.noti.open('Ha ocurrido un error', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
     })
   }
   /** fin funcion */
 
       
   /**funcion para detectar si esta logeado */
-  authSession():void{
+  authSession(){
     let x = localStorage.length;
 
     if(x==0){
@@ -346,6 +372,13 @@ export class ProfileComponent implements OnInit {
 
       followMeButton!.style.backgroundColor = "var(--r)";
       followMeButton!.innerHTML = "Dejar de seguir";
+
+      this.noti.open('Siguiendo a '+this.user.name, 'Cerrar', {
+        panelClass: ["custom-snackbar1"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
     }else{
       
       let deleteId = followers.indexOf(_idPerson)
@@ -395,17 +428,88 @@ export class ProfileComponent implements OnInit {
           follows: followsUserLogged,
           link: linkUserLogged,
         };
+        
 
         this.count--
+        
         this.userService.putUser(userLogged, this.idLocalStorage).subscribe((res) => {})
         this.userService.putUser(user, this.idsession).subscribe((res) =>{})
  
         followMeButton!.style.backgroundColor = "var(--c1)";
         followMeButton!.innerHTML = "Seguir";
+        this.noti.open('Dejaste de seguir a '+user.name, 'Cerrar', {
+          panelClass: ["custom-snackbar"],
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 5000
+        });
+        
     }
   }
   /**  fin funcion */
 
+
+  /** función para enviar postulación de Mentor */
+
+  formApply = new FormGroup({
+    cellphone: new FormControl("",[Validators.required])
+  })
+
+  Apply(){
+    let cellphone = this.formApply.value.cellphone?.toString() || "";
+    let contador = cellphone.length;
+    if(contador != 10){
+      this.noti.open('El número es invalido', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
+      return
+    }
+
+    let requestValid: Boolean = false
+
+    this.requestService.getRequestValid(this.idsession).subscribe(res => {
+        requestValid = res
+        
+        if(requestValid == false){
+
+
+          let cellphone = this.formApply.value.cellphone || "";
+      
+          let request = new Request("",this.user._id,this.user.name, cellphone)
+      
+          this.requestService.postRequest(request).subscribe(res => {
+            this.noti.open('Postulación enviada', 'Cerrar', {
+              panelClass: ["custom-snackbar1"],
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              duration: 5000
+            });
+          }, err => { 
+            this.noti.open('Ese número de telefono ya ha sido registrado', 'Cerrar', {
+              panelClass: ["custom-snackbar"],
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom',
+              duration: 5000
+
+            });
+          })
+        }else{
+          this.noti.open('Ya tienes una postulación enviada', 'Cerrar', {
+            panelClass: ["custom-snackbar"],
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            duration: 5000
+          });
+        }
+    })
+   
+
+    
+  }
+  /** fin función */
   buttons(){
     let makePost = document.querySelector('#makePost');
     makePost?.addEventListener('click', () => {
@@ -413,13 +517,13 @@ export class ProfileComponent implements OnInit {
     })
   }
   
-  SubEnterpriseOpen(modalId:String): void{
+  ModalOpen(modalId:String): void{
     let modals = document.querySelectorAll(`#${modalId}`) as NodeListOf<HTMLDivElement>;
     modals.forEach(modalId => {
       modalId!.classList.add('visto');
     });
   }
-  SubEnterpriseClose(modalId:String): void{
+  ModalClose(modalId:String): void{
     let modals = document.querySelectorAll(`#${modalId}`) as NodeListOf<HTMLDivElement>;
     modals.forEach(modalId => {
       modalId!.classList.remove('visto');

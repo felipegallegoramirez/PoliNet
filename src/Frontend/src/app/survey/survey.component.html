@@ -1,4 +1,4 @@
-<img class="Background" src="./../../assets/fondo.PNG" alt="">
+
 <div class="body">
     <section class="asking">
         <div class="titleSurvey">
@@ -27,7 +27,7 @@
                 <textarea formControlName="description4" cols="30" rows="10" placeholder="Escribe tu opinión" required></textarea>
             </div>
             <div class="ButtonSend">
-                <button [disabled]="!formSurveyEnterprisetoTeacher.valid || !formSurveyEnterprisetoTeacher.touched" >Enviar formulario</button>
+                <button  mat-stroked-button color="accent" [disabled]="!formSurveyEnterprisetoTeacher" >Enviar formulario</button>
             </div>
         </form>
         <form id="teacher" class="informationTeacher" [formGroup]="formSurveyTeachertoEnterprise" (submit)="sendFormSurveyTtoE()">

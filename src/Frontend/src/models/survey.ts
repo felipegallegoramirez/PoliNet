@@ -1,18 +1,18 @@
 export class Survey{
-    _id:String;
-    title:String;
-    answers:Array<String>;
-    idbooking:String;
+    _id:string;
+    title:string;
+    answers:Array<string>;
+    idbooking:string;
     responsible:Person;
     respondent:Person;
     rating:number;
     
-    constructor(_id:String = "",
-        title:String = "",
-        answers:Array<String> = [],
-        idbooking:String = "",
-        responsible:Person,
-        respondent: Person,
+    constructor(_id:string = "",
+        title:string = "",
+        answers:Array<string> = [],
+        idbooking:string = "",
+        responsible:Person = new Person(),
+        respondent: Person = new Person(),
         rating:number = 0){
         
             this._id = _id;
@@ -25,11 +25,11 @@ export class Survey{
     }
 }
 export class Person {
-    _id:String;
-    name:String;
+    _id:string;
+    name:string;
 
-    constructor(_id:String = "",
-        name:String = "") {
+    constructor(_id:string = "",
+        name:string = "") {
         this._id = _id;
         this.name = name;
     }

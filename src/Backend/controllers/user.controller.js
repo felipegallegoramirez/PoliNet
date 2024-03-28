@@ -3,6 +3,7 @@ const User = require("../models/user");
 const { encrypt } = require("../utils/encript")
 const UserCtrl = {};
 const { messageLogin } = require("../utils/emailprefabs/authemail");
+const { messageRegister } = require("../utils/emailprefabs/registerEmail");
 
 
 UserCtrl.getUsers = async (req, res, next) => {
@@ -46,7 +47,6 @@ UserCtrl.getUsersService = async (req, res, next) => {
         const save = await User.find();
         const { id } = req.params;
         let fil = save.filter((x)=>x.services.includes(id))
-        console.log()
         res.status(200).send(fil)
     }catch(err){
         res.status(400).send(err)
@@ -90,7 +90,7 @@ UserCtrl.createUser = async (req, res, next) => {
             link,
             followers,
             follows};
-         
+        await messageRegister(email, name)
         var save= await User.create(body);
         res.status(200).send(save)
     }catch(err){
@@ -103,17 +103,17 @@ UserCtrl.createUser = async (req, res, next) => {
 
 UserCtrl.SendCode = async (req, res, next) => {
     try{
-        let user = await User.findOne({email: req.body.email})
+        let user = await User.findOne({email: req.params.email})
         var x = Math.floor(Math.random() * 100000);
-        user.verified.active = true;
-        user.verified.code = x
-        
+        user.active = true;
+        user.code = x
         user = await User.findByIdAndUpdate(user._id, user)
         await messageLogin(user.email, user._id, x)
         res.status(200).send({
             mesagge: "Enviado"
         })
     }catch(err){
+         console.log(err)
         res.status(400).send({
             message: "No se ha completado el envio"
         })
@@ -122,12 +122,12 @@ UserCtrl.SendCode = async (req, res, next) => {
 
 UserCtrl.putPassword = async (req, res, next) => {
     try{
-        let user = user.findOne({email: req.body.email})
+        let user = await User.findOne({email: req.body.email})
         if(user.code == req.body.code && user.active == true){
             const { password } = req.params;
             user.password = password
             user.active = false
-            const save = await user.findByIdAndUpdate(user._id, user)
+            const save = await User.findByIdAndUpdate(user._id, user)
             res.status(200).send(save)
         }else{
             res.status(401).send(err)
@@ -136,7 +136,17 @@ UserCtrl.putPassword = async (req, res, next) => {
         res.status(400).send(err)
     }
 }
+UserCtrl.putRolTeacherUser = async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        console.log(id)
 
+        const save = await User.findOneAndUpdate({_id: id, rol:'userRecurrent'}, {$set: {rol: 'teacher'}}, {new: false})
+        res.status(200).send(save)
+    }catch(err){
+        res.status(400).send(err)
+    }
+}
 UserCtrl.putRolUser = async (req, res, next) => {
     try{
         const { email } = req.params;

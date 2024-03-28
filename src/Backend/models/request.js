@@ -11,10 +11,12 @@ const StorageScheme = new mongoose.Schema(
       type: String,
       required: true,
     },
-    answers: [{
+    cellphone: {
       type: String,
+      unique: true,
+      trim: true,
       required: true,
-    }],
+    },
   },
   {
     versionKey: false,

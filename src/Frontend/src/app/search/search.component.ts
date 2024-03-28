@@ -21,8 +21,8 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.authSession();
-      this.getUsers();
-      this.search()
+    this.getUsers();
+    this.search()
   }
   /** Traer todos los usarios */
   getUsers(){
@@ -38,9 +38,8 @@ export class SearchComponent implements OnInit {
   /** fin función */
     
   /**funcion para detectar si esta logeado */
-  authSession():void{
+  authSession(){
     let x = localStorage.length;
-
     if(x==0){
       window.location.replace('http://localhost:4200/Login')
     }

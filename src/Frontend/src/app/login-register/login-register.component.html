@@ -13,7 +13,7 @@
                 <input formControlName="name" type="text" placeholder="Nombre">
                 <input formControlName="email" type="email" placeholder="Correo electronico">
                 <input formControlName="password" type="password" placeholder="Contraseña" >
-                <button [disabled]="!formRegister.valid">Registrarse</button>
+                <button [disabled]="!formRegister">Registrarse</button>
             </form>
         </div>
         <div class="form-container sign-in">
@@ -22,7 +22,7 @@
                 <input formControlName="email" type="email" placeholder="Correo electronico" required>
                 <input formControlName="password" type="password" placeholder="Contraseña" required>
                 <a href="/Forget-password">¿Olvidaste tu contraseña?</a>
-                <button [disabled]="!formLogin.valid">Iniciar</button>
+                <button [disabled]="!formLogin">Iniciar</button>
             </form>
         </div>
         <div class="toggle-container">

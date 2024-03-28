@@ -1,18 +1,19 @@
 export class Request{
-    _id:String;
-    iduser:String;
-    name:String;
-    answer:Array<String>;
+    _id:string;
+    iduser:string;
+    name:string;
+    cellphone: string;
 
-    constructor(_id:String = "",
-        iduser:String = "",
-        name:String = "",
-        answer:Array<String> = []){
+    constructor(_id:string = "",
+        iduser:string = "",
+        name:string = "",
+        cellphone:string = "",
+        ){
 
             this._id = _id;
             this.iduser = iduser;
             this.name = name;
-            this.answer = answer;
+            this.cellphone = cellphone; 
             
     }
 }

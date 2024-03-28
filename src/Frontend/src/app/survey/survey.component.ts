@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Person, Survey } from '../../models/survey';
 import { SurveyService } from '../../services/survey.service';
+import { MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -11,11 +12,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './survey.component.css'
 })
 export class SurveyComponent implements OnInit {
-  _idUser: String = "";
-  nameUser: String = "";
-  rolUser: String = "";
+  _idUser: string = "";
+  nameUser: string = "";
+  rolUser: string = "";
 
-  constructor( private surveyService: SurveyService){  }
+  constructor( private surveyService: SurveyService, private matSnackBar: MatSnackBar){  }
+
 
   ngOnInit(): void {
     this.checkLocalStorage();
@@ -51,6 +53,17 @@ export class SurveyComponent implements OnInit {
   })
 
   sendFormSurveyEtoT(){
+
+    if (this.formSurveyEnterprisetoTeacher.invalid) {
+      
+      this.matSnackBar.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000 
+      });
+      return; 
+    }
     /** Objeto persona del mentor */
 
     let _idTeacher = "";
@@ -96,7 +109,7 @@ export class SurveyComponent implements OnInit {
     this.surveyService.postSurvey(survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
-        //window.location.replace('http://localhost:4200/Home')
+        window.location.replace('http://localhost:4200/Home')
       }
     })
   }
@@ -115,7 +128,16 @@ export class SurveyComponent implements OnInit {
   })
 
   sendFormSurveyTtoE() {
-
+    if (this.formSurveyEnterprisetoTeacher.invalid) {
+      
+      this.matSnackBar.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+      //  horizontalPosition: this.horizontalPositionSnack,
+        //verticalPosition: this.verticalPositionSnack,
+        duration: 5000 
+      });
+      return; 
+    }
   /** Objeto persona del mentor */
 
     const teacher: Person = {
@@ -160,7 +182,7 @@ export class SurveyComponent implements OnInit {
     this.surveyService.postSurvey(survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
-        //window.location.replace('http://localhost:4200/Home')
+        window.location.replace('http://localhost:4200/Home')
       }
     })
   }
@@ -168,7 +190,7 @@ export class SurveyComponent implements OnInit {
 
 
   /**funcion para detectar si esta logeado */
-  authSession(): void {
+  authSession(){
     let x = localStorage.length;
     if (x == 0) {
       window.location.replace('http://localhost:4200/Login')
