@@ -13,12 +13,18 @@ BookingCtrl.getBookings = async (req, res, next) => {
     }
 };
 
+const User = require("../models/user");
+const { messageBoking } = require("../utils/emailprefabs/booking");
+
 BookingCtrl.createBooking = async (req, res, next) => {
     try{
         const { profesional, service, day, month,hour,user} = req.body;
         const body = { profesional, service, day, month,hour,user};
-        console.log(body)
+        var user1= await User.findById(user);
+        var user2= await User.findById(profesional);
         var save= await Booking.create(body);
+        messageBoking(user1.email, user1.name, `${day}/${month}/2024 a las ${hour}`,user2.name,save._id)
+        messageBoking(user2.email, user2.name, `${day}/${month}/2024 a las ${hour}`,user1.name,save._id)
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
