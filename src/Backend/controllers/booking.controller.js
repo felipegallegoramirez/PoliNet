@@ -31,7 +31,7 @@ BookingCtrl.createBooking = async (req, res, next) => {
 
 
         const survey1={
-            title:'Calificacion al instructor',
+            title:'Mentor a Emprendedor',
             answers:[],
             idbooking:save._id,
             responsible:{
@@ -49,7 +49,7 @@ BookingCtrl.createBooking = async (req, res, next) => {
             month:month,
         }
         const survey2={
-            title:'Calificacion al instructor',
+            title:'Emprendedor a mentor',
             answers:[],
             idbooking:save._id,
             respondent:{

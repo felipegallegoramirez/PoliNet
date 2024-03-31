@@ -88,7 +88,7 @@ UserCtrl.createUser = async (req, res, next) => {
             rol,
             files_id,
             post_id,
-            bloq,
+            bloq:[[],[],[],[],[],[],[],[],[]],
             services,
             booking,
             code,

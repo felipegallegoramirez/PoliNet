@@ -31,13 +31,6 @@ export class SurveyComponent implements OnInit {
         var hora = fechaActual.getHours();
         var dia = fechaActual.getDate();
         var mes = fechaActual.getMonth()
-        console.log(hora)
-        console.log(dia)
-        console.log(mes)
-        console.log(this.survey.hour)
-        console.log(this.survey.day)
-        console.log(this.survey.month)
-        console.log(mes<Number(this.survey.month))
         if(this.survey.state==true){
           window.location.replace('http://localhost:4200/Home')
         }else if(mes<Number(this.survey.month)){
@@ -98,11 +91,11 @@ export class SurveyComponent implements OnInit {
     let answer: string[] = [];
     let rating = 0;
 
-    answer.push(this.formSurveyTeachertoEnterprise.value.description0 || "")
-    answer.push(this.formSurveyTeachertoEnterprise.value.description1 || "")
-    answer.push(this.formSurveyTeachertoEnterprise.value.description2 || "")
-    answer.push(this.formSurveyTeachertoEnterprise.value.description3 || "")
-    answer.push(this.formSurveyTeachertoEnterprise.value.description4 || "")
+    answer.push(this.formSurveyEnterprisetoTeacher.value.description0 || "")
+    answer.push(this.formSurveyEnterprisetoTeacher.value.description1 || "")
+    answer.push(this.formSurveyEnterprisetoTeacher.value.description2 || "")
+    answer.push(this.formSurveyEnterprisetoTeacher.value.description3 || "")
+    answer.push(this.formSurveyEnterprisetoTeacher.value.description4 || "")
 
     this.survey.answers=answer
     this.survey.rating=rating

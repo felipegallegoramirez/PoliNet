@@ -122,12 +122,15 @@
         </div>
     </section>
     <section class="View" *ngIf="contadorMostrar==1">
-        <div class="boxView" *ngFor="let survey of surveys">
-            <h3>{{survey.title}}</h3>
-            <p>De: {{survey.responsible.name}}</p>
-            <p>Hacía: {{survey.respondent.name}}</p>
-            <button class="ButtonBasic" (click)="ModalOpenSurvey('ModalViewSurvey', survey._id)">Ver detalles</button>
-        </div>
+        <ng-container *ngFor="let survey of surveys">
+            <div class="boxView" *ngIf="survey.state">
+                <h3>{{survey.title}}</h3>
+                <p>De: {{survey.responsible.name}}</p>
+                <p>Hacía: {{survey.respondent.name}}</p>
+                <button class="ButtonBasic" (click)="ModalOpenSurvey('ModalViewSurvey', survey._id)">Ver detalles</button>
+            </div>
+        </ng-container>
+
     </section>
     <section class="View" *ngIf="contadorMostrar==2">
         <div class="boxView" *ngFor="let user of users">
