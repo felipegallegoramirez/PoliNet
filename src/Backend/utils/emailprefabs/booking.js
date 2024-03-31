@@ -1,7 +1,7 @@
 
 const  sendcorreo  = require("../emails");
 
-const messageBoking = (correo, name, fecha,other,id) => {
+const messageBoking = (correo, name, fecha,other,id,survey) => {
     sendcorreo(correo,"Nueva asesoria", 
     `
     <div class="sup" style="width: 100%; display: flex; justify-content: center; align-items:center;">
@@ -15,6 +15,10 @@ const messageBoking = (correo, name, fecha,other,id) => {
         <br>
         <br>
         <a href="http://localhost:4200/Reunion/${id}/">Link de la asesoria</a>
+        <br>
+        <br>
+        <b>Recuerda calificar luego de la reunion </b>
+        <a href="http://localhost:4200/survey/${survey}/">Link de la asesoria</a>
         <br>
         <br>
         <br>

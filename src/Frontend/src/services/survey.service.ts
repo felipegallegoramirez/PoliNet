@@ -15,6 +15,10 @@ export class SurveyService {
     return this.http.post<boolean>(this.apiUrl + '/', survey)
   }
 
+  putSurvey(id: string,survey: Survey){
+    return this.http.put<Survey>(this.apiUrl + '/'+id, survey)
+  }
+
   getSurvey(id: string){
     return this.http.get<Survey>(this.apiUrl + `/unique/${id}`)
   }

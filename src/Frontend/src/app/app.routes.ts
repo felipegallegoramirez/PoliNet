@@ -28,7 +28,7 @@ export const routes: Routes = [
     {path: 'Profile/:id', component: ProfileComponent},
     {path: 'makePost/:id', component: MakePostComponent},
     {path: 'editProfile/:id', component: EditProfileComponent},
-    {path: 'survey', component: SurveyComponent},
+    {path: 'survey/:id', component: SurveyComponent},
     {path: 'search', component: SearchComponent},
     {path: 'admon/:id', component: AdminViewComponent},
     

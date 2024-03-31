@@ -3,6 +3,9 @@ const Booking = require("../models/booking");
 const BookingCtrl = {};
 
 
+
+
+
 BookingCtrl.getBookings = async (req, res, next) => {
     try{
         const save = await Booking.find();
@@ -15,6 +18,7 @@ BookingCtrl.getBookings = async (req, res, next) => {
 
 const User = require("../models/user");
 const { messageBoking } = require("../utils/emailprefabs/booking");
+const Survey = require("../models/survey");
 
 BookingCtrl.createBooking = async (req, res, next) => {
     try{
@@ -23,8 +27,52 @@ BookingCtrl.createBooking = async (req, res, next) => {
         var user1= await User.findById(user);
         var user2= await User.findById(profesional);
         var save= await Booking.create(body);
-        messageBoking(user1.email, user1.name, `${day}/${month}/2024 a las ${hour}`,user2.name,save._id)
-        messageBoking(user2.email, user2.name, `${day}/${month}/2024 a las ${hour}`,user1.name,save._id)
+
+
+
+        const survey1={
+            title:'Calificacion al instructor',
+            answers:[],
+            idbooking:save._id,
+            responsible:{
+                _id:user2._id,
+                name:user2.name
+            },
+            respondent:{
+                _id:user1._id,
+                name:user1.name
+            },
+            rating:0,
+            state:false,
+            hour:hour,
+            day:day,
+            month:month,
+        }
+        const survey2={
+            title:'Calificacion al instructor',
+            answers:[],
+            idbooking:save._id,
+            respondent:{
+                _id:user2._id,
+                name:user2.name
+            },
+            responsible:{
+                _id:user1._id,
+                name:user1.name
+            },
+            rating:0,
+            state:false,
+            hour:hour,
+            day:day,
+            month:month,
+        }
+
+        var Msurvey1= await Survey.create(survey1);
+        var Msurvey2= await Survey.create(survey2);
+
+        messageBoking(user1.email, user1.name, `${day}/${month+1}/2024 a las ${hour}`,user2.name,save._id,Msurvey1._id)
+        messageBoking(user2.email, user2.name, `${day}/${month+1}/2024 a las ${hour}`,user1.name,save._id,Msurvey2._id)
+
         res.status(200).send(save)
     }catch(err){
         res.status(400).send(err)
