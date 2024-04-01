@@ -31,6 +31,10 @@ export class UserService {
     return this.http.get<User[]>(this.apiUrl + '/search/')
   }
 
+  getUserTeacherService(){
+    return this.http.get<User[]>(this.apiUrl + '/teacher/')
+  }
+
   putUserRol(email: string){
     return this.http.get(this.apiUrl + `/rol/${email}`)
   }

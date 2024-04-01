@@ -3,6 +3,8 @@ import { Person, Survey } from '../../models/survey';
 import { SurveyService } from '../../services/survey.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-survey',
@@ -16,13 +18,35 @@ export class SurveyComponent implements OnInit {
   nameUser: string = "";
   rolUser: string = "";
 
-  constructor( private surveyService: SurveyService, private matSnackBar: MatSnackBar){  }
+  constructor( private surveyService: SurveyService, private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute){  }
 
-
+  id:string=''
+  survey:Survey=new Survey()
   ngOnInit(): void {
-    this.checkLocalStorage();
-    this.authSession();
-    this.checkUser();
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      this.surveyService.getSurvey(this.id).subscribe(res=>{
+        this.survey=res as Survey
+        var fechaActual = new Date();
+        var hora = fechaActual.getHours();
+        var dia = fechaActual.getDate();
+        var mes = fechaActual.getMonth()
+        if(this.survey.state==true){
+          window.location.replace('http://localhost:4200/Home')
+        }else if(mes<Number(this.survey.month)){
+          window.location.replace('http://localhost:4200/Home')
+        }else if(mes==Number(this.survey.month)&&dia<Number(this.survey.day)){
+          window.location.replace('http://localhost:4200/Home')
+        }else if(mes==Number(this.survey.month)&&dia==Number(this.survey.day)&&hora<Number(this.survey.hour)){
+          window.location.replace('http://localhost:4200/Home')
+        }else{
+          this.checkLocalStorage();
+          this.authSession();
+          this.checkUser();
+        }
+
+      })
+    })
   }
 
   /**funcion get LocalStorage */
@@ -64,30 +88,7 @@ export class SurveyComponent implements OnInit {
       });
       return; 
     }
-    /** Objeto persona del mentor */
-
-    let _idTeacher = "";
-    let nameTeacher = "";
-
-    const teacher: Person = {
-      _id: _idTeacher,
-      name: nameTeacher,
-    }
-    /** Objeto persona del emprendedor */
-
-    const enterprise: Person = {
-      _id: this._idUser,
-      name: this.nameUser,
-    }
-
-    /** Objeto encuesta */
-
-    let _id = "";
-    let title = "Emprendedor a mentor";
     let answer: string[] = [];
-    let idbooking = "";
-    let responsible = enterprise;
-    let respondent = teacher;
     let rating = 0;
 
     answer.push(this.formSurveyEnterprisetoTeacher.value.description0 || "")
@@ -96,17 +97,11 @@ export class SurveyComponent implements OnInit {
     answer.push(this.formSurveyEnterprisetoTeacher.value.description3 || "")
     answer.push(this.formSurveyEnterprisetoTeacher.value.description4 || "")
 
-    const survey: Survey = {
-      _id: _id,
-      title: title,
-      answers: answer,
-      idbooking: idbooking,
-      responsible: responsible,
-      respondent: respondent,
-      rating: rating
-    }
+    this.survey.answers=answer
+    this.survey.rating=rating
+    this.survey.state=true
 
-    this.surveyService.postSurvey(survey).subscribe((res) => {
+    this.surveyService.putSurvey(this.id,this.survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
         window.location.replace('http://localhost:4200/Home')
@@ -138,29 +133,7 @@ export class SurveyComponent implements OnInit {
       });
       return; 
     }
-  /** Objeto persona del mentor */
-
-    const teacher: Person = {
-      _id: this._idUser,
-      name: this.nameUser,
-    }
-    /** Objeto persona del emprendedor */
-    let _idEnterprise = "";
-    let nameEnterprise = "";
-
-    const enterprise: Person = {
-      _id: _idEnterprise,
-      name: nameEnterprise,
-    }
-
-    /** Objeto encuesta */
-
-    let _id = "";
-    let title = "Mentor a Emprendedor";
     let answer: string[] = [];
-    let idbooking = "";
-    let responsible = teacher;
-    let respondent = enterprise;
     let rating = 0;
 
     answer.push(this.formSurveyTeachertoEnterprise.value.description0 || "")
@@ -169,17 +142,11 @@ export class SurveyComponent implements OnInit {
     answer.push(this.formSurveyTeachertoEnterprise.value.description3 || "")
     answer.push(this.formSurveyTeachertoEnterprise.value.description4 || "")
 
-    const survey: Survey = {
-      _id: _id,
-      title: title,
-      answers: answer,
-      idbooking: idbooking,
-      responsible: responsible,
-      respondent: respondent,
-      rating: rating
-    }
+    this.survey.answers=answer
+    this.survey.rating=rating
+    this.survey.state=true
 
-    this.surveyService.postSurvey(survey).subscribe((res) => {
+    this.surveyService.putSurvey(this.id,this.survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
         window.location.replace('http://localhost:4200/Home')

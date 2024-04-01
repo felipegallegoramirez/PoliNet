@@ -11,6 +11,14 @@ import { SurveyComponent } from './survey/survey.component';
 import { SearchComponent } from './search/search.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
 
+
+import { ProfesionalComponent } from './bokings-folder/profesional/profesional.component';
+import { TimeComponent } from './bokings-folder/time/time.component';
+import { ServicesComponent } from './bokings-folder/services/services.component';
+import { AdmonTimeComponent } from './bokings-folder/admon-time/admon-time.component';
+import { CalendarComponent } from './bokings-folder/calendar/calendar.component';
+import { ConfirmComponent } from './bokings-folder/confirm/confirm.component';
+
 export const routes: Routes = [
     {path: 'Home', component: HomeComponent},
     {path: 'Postview/:id', component: PostViewComponent},
@@ -20,7 +28,14 @@ export const routes: Routes = [
     {path: 'Profile/:id', component: ProfileComponent},
     {path: 'makePost/:id', component: MakePostComponent},
     {path: 'editProfile/:id', component: EditProfileComponent},
-    {path: 'survey', component: SurveyComponent},
+    {path: 'survey/:id', component: SurveyComponent},
     {path: 'search', component: SearchComponent},
-    {path: 'admon/:id', component: AdminViewComponent}
+    {path: 'admon/:id', component: AdminViewComponent},
+    
+    {path: 'Profesional', component: ProfesionalComponent },
+    {path: 'Time', component: TimeComponent },
+    {path: 'Services', component: ServicesComponent },
+    {path: 'AdmonTime', component: AdmonTimeComponent },
+    {path: 'calendar', component: CalendarComponent },
+    {path: 'confirm', component: ConfirmComponent },
 ];

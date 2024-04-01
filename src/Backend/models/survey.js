@@ -41,6 +41,19 @@ const StorageScheme = new mongoose.Schema(
       type: Number,
       
     }],
+    state:{
+      type:Boolean
+    },
+    hour: {
+      type: String,
+    },
+    day: {
+      type: String,
+    },
+    month: {
+      type: String,
+    },
+
   },
   {
     versionKey: false,

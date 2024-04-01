@@ -7,6 +7,7 @@ const { uploadpdf, uploadimage } = require("../utils/savestorage")
 router.get("/", user.getUsers);
 router.post("/", user.createUser);
 router.get("/search/", user.SearchUser);
+router.get("/teacher/", user.getUsersTeacherService);
 router.get("/service/:id", user.getUsersService);
 router.get("/unique/:id", user.getUser); 
 router.get("/rol/:email", user.putRolUser);

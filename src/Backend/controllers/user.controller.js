@@ -42,6 +42,15 @@ UserCtrl.SearchUser = async (req, res, next) => {
     }
 }
 
+UserCtrl.getUsersTeacherService = async (req, res, next) => {
+    try{
+        const save = await User.find({rol:'teacher'})
+        res.status(200).send(save)
+    }catch(err){
+        res.status(400).send(err)
+    }
+}
+
 UserCtrl.getUsersService = async (req, res, next) => {
     try{
         const save = await User.find();
@@ -79,7 +88,7 @@ UserCtrl.createUser = async (req, res, next) => {
             rol,
             files_id,
             post_id,
-            bloq,
+            bloq:[[],[],[],[],[],[],[],[],[]],
             services,
             booking,
             code,
