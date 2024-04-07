@@ -133,9 +133,8 @@ UserCtrl.putPassword = async (req, res, next) => {
     try{
         let user = await User.findOne({email: req.body.email})
         if(user.code == req.body.code && user.active == true){
-            const { password } = req.params;
-            user.password = password
-            user.active = false
+            user.password = await encrypt(req.body.password);
+            user.active = false;
             const save = await User.findByIdAndUpdate(user._id, user)
             res.status(200).send(save)
         }else{

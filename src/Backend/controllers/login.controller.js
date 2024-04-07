@@ -21,7 +21,7 @@ const loginCtrl = async (req, res, next) => {
 
     if (!checkPassword) {
       next(boom.unauthorized("Incorret Password"));
-    }
+    }else{
 
     let session = {
       id: user.id,  
@@ -38,7 +38,7 @@ const loginCtrl = async (req, res, next) => {
     */
   
     res.status(200).json(session)
-
+  }
   } catch (e) {
     next(boom.badRequest(e));
   }

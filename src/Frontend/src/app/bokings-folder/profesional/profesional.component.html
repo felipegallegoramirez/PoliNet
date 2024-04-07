@@ -2,18 +2,10 @@
   <div class="profesional">
     <h1>Selecionar profesional</h1>
     <div class="profesional_grid">
-      <div (click)="default()" class="card_profesional">
-        <span class="material-symbols-outlined">group</span>
-        <p>Cualquier Profesional</p>
-        <p>Para maxima disponibilidad</p>
-      </div>
-
       <div *ngFor="let profesional of profesionals;index as i;" (click)="select(i)"  class="card_profesional">
         <img src="https://www.w3schools.com/howto/img_avatar.png" alt="">
         <p>{{profesional.name}}</p>
       </div>
-
-
     </div>
   </div>
 

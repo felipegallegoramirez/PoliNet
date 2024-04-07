@@ -44,6 +44,7 @@ export class AdminViewComponent implements OnInit {
       this.getSurveys();
       this.getUsers();
       this.getUserLogged();
+      this.authSession();
   }
   /*-----------------función para traer el administrador logeado-------------------- */
 
@@ -231,4 +232,15 @@ export class AdminViewComponent implements OnInit {
       modalId!.classList.remove('visto');
     });
   }
+
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
 }
+

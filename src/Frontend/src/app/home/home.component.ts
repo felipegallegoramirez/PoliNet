@@ -35,9 +35,9 @@ export class HomeComponent implements OnInit {
   
   /**funcion para detectar si esta logeado */
   authSession():void{
-    let x = localStorage.length;
+    let x = localStorage.getItem('User');
 
-    if(x==0){
+    if(x == null){
       window.location.replace('http://localhost:4200/Login')
     }
   }

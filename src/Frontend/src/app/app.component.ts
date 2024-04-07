@@ -19,10 +19,23 @@ export class AppComponent implements OnInit {
     this.HideButton();
     this.closeSession();
     this.authUser();
+    this.navbarHide();
     this.CheckUsers();
   }
 
+  navbarHide(){
+    let box = document.getElementById('SideBar');
+    let x = localStorage.getItem('User')
+    if(x == null) {
+      box!.style.display = 'none'
+    }
+  }
+
+
+
   CheckUsers() {
+    let buttonHour = document.getElementById('button3-hour');
+    let buttonCalendar = document.getElementById('button4-calendar');  
     let buttonMeetings = document.getElementById('button2-meetings');
     let linkPub = document.getElementById('LinkPub');
     let linkPriv = document.getElementById('LinkPriv');
@@ -35,13 +48,19 @@ export class AppComponent implements OnInit {
 
       switch (this.rol) {
         case "userRecurrent":
-          buttonMeetings !.style.display = 'none';          
+          buttonMeetings !.style.display = 'none';
+          buttonCalendar!.style.display = 'none';
+          buttonHour!.style.display = 'none';
           break;
         case "enterprise":
-          buttonMeetings !.style.display = 'flex';
+          buttonHour!.style.display = 'none'
+          buttonCalendar!.style.display = 'flex';
+          buttonMeetings!.style.display = 'flex';
           break;
         case "teacher":
-          buttonMeetings !.style.display = 'flex';
+          buttonHour!.style.display = 'flex';
+          buttonCalendar!.style.display = 'flex';
+          buttonMeetings !.style.display = 'none';
           break;
         case "Admon":
           linkPub!.style.display = 'none';

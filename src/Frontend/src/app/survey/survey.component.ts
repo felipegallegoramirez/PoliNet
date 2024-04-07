@@ -48,6 +48,7 @@ export class SurveyComponent implements OnInit {
       })
     })
   }
+  
 
   /**funcion get LocalStorage */
 
@@ -156,10 +157,11 @@ export class SurveyComponent implements OnInit {
   /**  fin función */
 
 
-  /**funcion para detectar si esta logeado */
-  authSession(){
-    let x = localStorage.length;
-    if (x == 0) {
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
       window.location.replace('http://localhost:4200/Login')
     }
   }

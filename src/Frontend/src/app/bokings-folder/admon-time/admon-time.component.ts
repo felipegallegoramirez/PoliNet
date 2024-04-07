@@ -32,6 +32,7 @@ export class AdmonTimeComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.authSession();
     let x = localStorage.getItem('User');
     this.user_id = ''
     if (x != null) {
@@ -110,7 +111,15 @@ export class AdmonTimeComponent implements OnInit {
     })
   }
 
+  /**funcion para detectar si esta logeado */
+  authSession():void{
+    let x = localStorage.getItem('User');
 
+    if(x == null){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
 
   diference(): number {
     var fecha = new Date();

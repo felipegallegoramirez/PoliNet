@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profesional',
@@ -12,14 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 export class ProfesionalComponent implements OnInit {
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,
+    private noti: MatSnackBar) { }
 
   profesionals:Array<User>=[]
   selected:string=""
 
   ngOnInit(): void {
-
-    
+    this.authSession();
     this.userService.getUserTeacherService().subscribe(res=>{
       this.profesionals=res as User[]
       this.cargar()
@@ -27,13 +28,23 @@ export class ProfesionalComponent implements OnInit {
     
   }
 
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
+
   select(x:number){
     this.selected=this.profesionals[x]._id||""
     let old=document.getElementsByClassName("select")[0]
     if(old){
       old.classList.remove("select");
     }
-    let n = document.getElementsByClassName("card_profesional")[x+1]
+    let n = document.getElementsByClassName("card_profesional")[x]
     n.classList.add("select")
   }
   default(){
@@ -55,7 +66,12 @@ export class ProfesionalComponent implements OnInit {
       localStorage.setItem("preview",JSON.stringify(this.preview))
       window.location.replace("http://localhost:4200/Time");
     }else{
-      alert("Seleccione un servicio")
+      this.noti.open('Por favor, seleccione un profesional', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
     }
   }
 

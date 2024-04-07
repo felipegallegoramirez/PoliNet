@@ -85,15 +85,13 @@ button img{
     border-radius: 10px;
     padding: 0 25px;
 }
-.imageProfile{
-    width: 90%;
-    margin-right: 10px;
-}
-.imageProfile img{
-    width: 90%;
-    border-radius: 100px;
+.ResultSearch img{
+    width: 80px;
+    margin-right: 20px;
+    border-radius: 50%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
+    border: 2px solid var(--c1);
 }
 .ContainerProfile:hover{
     transform: scale3d(1.03,1.03,1.03);

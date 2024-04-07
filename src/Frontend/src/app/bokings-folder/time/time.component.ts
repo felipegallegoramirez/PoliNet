@@ -2,8 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from '../../../models/booking';
 import { User } from '../../../models/user';
-
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BookingService } from '../../../services/booking.service';
 import { UserService } from '../../../services/user.service';
@@ -45,9 +44,12 @@ export class TimeComponent implements OnInit {
   }
 
 
-  constructor(private userService: UserService,private bookingService:BookingService) {}
+  constructor(private userService: UserService,
+    private bookingService:BookingService,
+    private noti: MatSnackBar) {}
 
   ngOnInit(): void {
+    this.authSession();
     var fecha = new Date();
     var hora = fecha.getHours();
     var tempdaytext=fecha.getDay();
@@ -104,6 +106,15 @@ export class TimeComponent implements OnInit {
     }
   }
 
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
 
 
    diference(): number{
@@ -302,6 +313,13 @@ export class TimeComponent implements OnInit {
         localStorage.setItem("preview",JSON.stringify(this.preview))
         window.location.replace("http://localhost:4200/confirm");
       })
+    }else{
+      this.noti.open('Por favor, seleccione una hora', 'Cerrar', {
+        panelClass: ["custom-snackbar"],
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom',
+        duration: 5000
+      });
     }
 
   }

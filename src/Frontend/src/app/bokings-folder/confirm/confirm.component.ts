@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-confirm',
@@ -11,12 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor() { }
+  constructor(private noti: MatSnackBar) { }
 
   ngOnInit(): void {
-
+    this.authSession()
     this.cargar()
   }
+
+  
   preview:{
     semana:string,
     dia:string,
@@ -46,5 +48,28 @@ export class ConfirmComponent implements OnInit {
       localStorage.setItem("preview",JSON.stringify(this.preview))
     }
   }
+
+  confirm(){
+    this.noti.open('Has registrado un servicio a las '+this.preview.hora+' el día '+this.preview.dia+' de '+this.preview.mes+ ' Seras redireccionado a la pagina de servicios', 'Cerrar', {
+      panelClass: ["custom-snackbar1"],
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration: 5000
+    });
+    setTimeout(() => {
+      window.location.replace('http://localhost:4200/Services')
+    }, 3000)
+    
+  }
+
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
+      window.location.replace('http://localhost:4200/Login')
+    }
+  }
+  /**  fin función */
 
 }

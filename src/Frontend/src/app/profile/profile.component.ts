@@ -125,15 +125,15 @@ export class ProfileComponent implements OnInit {
 
       
   /**funcion para detectar si esta logeado */
-  authSession(){
-    let x = localStorage.length;
+  authSession():void{
+    let x = localStorage.getItem('User');
 
-    if(x==0){
+    if(x == null){
       window.location.replace('http://localhost:4200/Login')
     }
   }
   /**  fin función */
-
+  
   /** función eliminar post */  
 
   formDelete = new FormGroup({

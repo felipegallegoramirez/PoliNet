@@ -37,15 +37,15 @@ export class SearchComponent implements OnInit {
   }
   /** fin función */
     
-  /**funcion para detectar si esta logeado */
-  authSession(){
-    let x = localStorage.length;
-    if(x==0){
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x == null){
       window.location.replace('http://localhost:4200/Login')
     }
   }
   /**  fin función */
-
   /** Funcion para hacer las busquedas */
  
   search(){

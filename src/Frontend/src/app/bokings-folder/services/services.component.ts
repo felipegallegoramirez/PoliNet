@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service';
 import { ServiceService } from '../../../services/service.service';
 import { CommonModule } from '@angular/common';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-services',
@@ -13,19 +13,29 @@ import { CommonModule } from '@angular/common';
 })
 export class ServicesComponent implements OnInit {
 
-  constructor(private serviceService:ServiceService) { }
+  constructor(private serviceService:ServiceService,
+    private noti: MatSnackBar) { }
 
   services:Array<Service>=[]
   selected:string=""
 
   ngOnInit(): void {
+    this.authSession()
     this.serviceService.getServices().subscribe(res=>{
       this.services=res as Service[]
       this.cargar();
     })
 
   }
+ /**funcion para detectar si esta logeado */
+ authSession():void{
+  let x = localStorage.getItem('User');
 
+  if(x == null){
+    window.location.replace('http://localhost:4200/Login')
+  }
+}
+/**  fin función */
   select(x:number){
     this.selected=this.services[x]._id||""
     let old=document.getElementsByClassName("select")[0]
@@ -48,7 +58,13 @@ export class ServicesComponent implements OnInit {
       localStorage.setItem("service_id",this.selected)
       window.location.replace("http://localhost:4200/Profesional");
     }else{
-      alert("Seleccione un servicio")
+        this.noti.open('Por favor, seleccione un servicio', 'Cerrar', {
+          panelClass: ["custom-snackbar"],
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom',
+          duration: 5000
+        });
+        return;
     }
   }
   preview:{

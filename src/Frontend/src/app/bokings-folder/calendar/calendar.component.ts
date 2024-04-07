@@ -28,6 +28,7 @@ export class CalendarComponent implements OnInit {
   hours:Array<number> =[]
 
   ngOnInit(): void {
+    this.authSession();
     var fecha = new Date();
 
     var tempdaytext=fecha.getDay();
@@ -127,5 +128,14 @@ cargar(x:number){
     })
   }
 }
+ /**funcion para detectar si esta logeado */
+ authSession():void{
+  let x = localStorage.getItem('User');
+
+  if(x == null){
+    window.location.replace('http://localhost:4200/Login')
+  }
+}
+/**  fin función */
 
 }

@@ -23,7 +23,7 @@ export class RecoveryPasswordComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
+    this.authSession();
     this.activatedRoute.params.subscribe(params => {
       this.idSession = params['id'];
       this.codeSession = params['code'];
@@ -34,14 +34,27 @@ export class RecoveryPasswordComponent implements OnInit {
     })
 
   }
+
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x != null){
+      window.location.replace('http://localhost:4200/Home')
+    }
+  }
+  /**  fin función */
+
+
   ValPassword(password: string): boolean {
     const mayus: RegExp = /[A-Z]/;
     const specialCaracters: RegExp = /[@_!#$%^&*()<>?/\|}{~:]/;
-
+    const number: RegExp = /[1-9]/;
     // Verificar si hay al menos una mayúscula y un carácter especial
+    const hasNumber: boolean = number.test(password);
     const hasMayus: boolean = mayus.test(password);
     const hasSpecialCaracter: boolean = specialCaracters.test(password);
-    return hasMayus && hasSpecialCaracter;
+    return hasMayus && hasSpecialCaracter && hasNumber;
   }
 
 
@@ -89,7 +102,7 @@ export class RecoveryPasswordComponent implements OnInit {
             });
           })
         } else {
-          this.noti.open('La contraseña debe de tener por lo menos una mayuscula y un caracter especial', 'Cerrar', {
+          this.noti.open('La contraseña debe de tener por lo menos una mayuscula, un número y un carácter especial', 'Cerrar', {
             panelClass: ["custom-snackbar"],
             horizontalPosition: 'center',
             verticalPosition: 'bottom',

@@ -16,7 +16,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginRegisterComponent implements OnInit, AfterViewInit {
 
-  constructor(private noti: MatSnackBar, private elementRef: ElementRef, private loginService: LoginService, private userService: UserService) {
+  constructor(private noti: MatSnackBar, 
+    private elementRef: ElementRef, 
+    private loginService: LoginService, 
+    private userService: UserService) {
 
   }
 
@@ -29,11 +32,12 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
   ValPassword(password:string): boolean{
     const mayus: RegExp = /[A-Z]/;
     const specialCaracters: RegExp = /[@_!#$%^&*()<>?/\|}{~:]/;
-
+    const number: RegExp = /[1-9]/;
     // Verificar si hay al menos una mayúscula y un carácter especial
+    const hasNumber: boolean = number.test(password);
     const hasMayus: boolean = mayus.test(password);
     const hasSpecialCaracter: boolean = specialCaracters.test(password);
-    return hasMayus && hasSpecialCaracter;
+    return hasMayus && hasSpecialCaracter && hasNumber;
   }
 
 
@@ -116,7 +120,7 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
         });
       })
     }else{
-      this.noti.open('La contraseña debera tener un caracter especial y una mayuscula', 'Cerrar', {
+      this.noti.open('La contraseña debera tener un carácter especial, número y una mayuscula', 'Cerrar', {
         panelClass: ["custom-snackbar"],
         horizontalPosition: 'center',
         verticalPosition: 'bottom',
@@ -138,7 +142,6 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
   login(): void {
 
     if (this.formLogin.invalid) {
-
       this.noti.open('Por favor, completa todos los campos obligatorios', 'Cerrar', {
         panelClass: ["custom-snackbar"],
         horizontalPosition: 'center',
@@ -147,6 +150,7 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
       });
       return;
     }
+    
     let email = this.formLogin.value.email || "";
     let password = this.formLogin.value.password || "";
 

@@ -17,12 +17,22 @@ export class ForgetPasswordComponent implements OnInit {
     private noti: MatSnackBar){}
 
   ngOnInit(): void {
-      
+      this.authSession();
   }
 
   formSendCode = new FormGroup({
     email: new FormControl('', [Validators.required])
   })
+
+   /**funcion para detectar si esta logeado */
+   authSession():void{
+    let x = localStorage.getItem('User');
+
+    if(x != null){
+      window.location.replace('http://localhost:4200/Home')
+    }
+  }
+  /**  fin función */
 
   sendCode(){
     let _id = "";

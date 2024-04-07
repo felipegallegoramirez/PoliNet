@@ -66,7 +66,7 @@
 }
 
 .select{
-    outline: 2px solid var(--c1);
+    outline: 3px solid var(--c1);
 }
 
 .select_day>div{
@@ -164,12 +164,46 @@
 }
 
 button{
-    color: var(--w);
-    outline: none;
-    border: none;
-    background: var(--c1);
-    padding: 10px;
-    width: calc(100% - 40px);
+    font-size: 17px;
+    border-radius: 10px;
     margin: 20px;
-    border-radius: 5px;
+    background-color: var(--c1);
+    text-align: center;
+    border: 2px solid transparent;
+    color: var(--sw);
+    width: calc(100% - 40px);
+    height: 37px;
+    text-decoration: none;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s linear; 
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
+}
+button:hover{
+    transition: all .1s ease;
+    background-color: var(--sw);
+    border: 2px solid var(--c2);
+    color: var(--c2);
+}
+/*-----notificaciones---*/
+::ng-deep .custom-snackbar1 {
+    border-radius: 2px !important;
+    outline: 2px solid var(--c1);
+    margin-bottom: 100px !important ;
+    --mdc-snackbar-container-color: var(--sw);
+    --mdc-snackbar-supporting-text-color: var(--b);
+}
+
+::ng-deep .custom-snackbar{
+    border-radius: 2px !important;
+    outline: 2px solid var(--r);
+    margin-bottom: 100px !important ;
+    --mdc-snackbar-container-color: var(--sw);
+    --mdc-snackbar-supporting-text-color: var(--b);
+}
+
+
+::ng-deep .custom-snackbar button, ::ng-deep .custom-snackbar1 button{
+    background-color: var(--c1) !important; 
+    color: var(--sw) !important;
 }
