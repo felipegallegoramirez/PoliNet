@@ -18,6 +18,7 @@ import { ServicesComponent } from './bokings-folder/services/services.component'
 import { AdmonTimeComponent } from './bokings-folder/admon-time/admon-time.component';
 import { CalendarComponent } from './bokings-folder/calendar/calendar.component';
 import { ConfirmComponent } from './bokings-folder/confirm/confirm.component';
+import { StatusComponent } from './status/status.component';
 
 export const routes: Routes = [
     {path: 'Home', component: HomeComponent},
@@ -38,4 +39,6 @@ export const routes: Routes = [
     {path: 'AdmonTime', component: AdmonTimeComponent },
     {path: 'calendar', component: CalendarComponent },
     {path: 'confirm', component: ConfirmComponent },
+
+    {path: 'status', component: StatusComponent },
 ];
