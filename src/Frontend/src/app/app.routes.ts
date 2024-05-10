@@ -21,6 +21,7 @@ import { ConfirmComponent } from './bokings-folder/confirm/confirm.component';
 import { StatusComponent } from './status/status.component';
 
 export const routes: Routes = [
+    {path: '', component: LoginRegisterComponent},
     {path: 'Home', component: HomeComponent},
     {path: 'Postview/:id', component: PostViewComponent},
     {path: 'Forget-password', component: ForgetPasswordComponent},
