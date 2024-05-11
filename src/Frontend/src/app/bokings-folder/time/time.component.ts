@@ -6,13 +6,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BookingService } from '../../../services/booking.service';
 import { UserService } from '../../../services/user.service';
-import { CommonModule } from '@angular/common';
+ 
 import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-time',
-  standalone: true,
-  imports: [CommonModule],
+   
+   
   templateUrl: './time.component.html',
   styleUrls: ['./time.component.css']
 })

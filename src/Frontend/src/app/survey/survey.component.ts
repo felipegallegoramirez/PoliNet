@@ -8,8 +8,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-survey',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './survey.component.html',
   styleUrl: './survey.component.css'
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+ 
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environments';
@@ -6,8 +6,6 @@ import { environment } from '../../../environments/environments';
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
-  standalone: true,
-  imports: [CommonModule],
   styleUrls: ['./confirm.component.css'],
 })
 export class ConfirmComponent implements OnInit {

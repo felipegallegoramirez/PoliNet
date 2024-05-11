@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+ 
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Post } from '../../models/post';
 import { Comment } from '../../models/post';
@@ -11,8 +11,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-post-view',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './post-view.component.html',
   styleUrl: './post-view.component.css'
 })

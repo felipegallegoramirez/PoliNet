@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
-import { CommonModule } from '@angular/common';
+ 
 import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-admon-time',
-  standalone: true,
-  imports: [CommonModule],
+   
+   
   templateUrl: './admon-time.component.html',
   styleUrls: ['./admon-time.component.css'],
 })

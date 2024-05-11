@@ -4,8 +4,6 @@ import { StatusService } from '../../services/status.service';
 
 @Component({
   selector: 'app-status',
-  standalone: true,
-  imports: [],
   templateUrl: './status.component.html',
   styleUrl: './status.component.css'
 })

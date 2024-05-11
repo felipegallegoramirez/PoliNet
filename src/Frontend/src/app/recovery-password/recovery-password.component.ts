@@ -8,8 +8,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-recovery-password',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './recovery-password.component.html',
   styleUrl: './recovery-password.component.css'
 })

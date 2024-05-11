@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from '../../../models/service';
 import { ServiceService } from '../../../services/service.service';
-import { CommonModule } from '@angular/common';
+ 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-services',
-  standalone: true,
-  imports: [CommonModule],
+   
+   
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })

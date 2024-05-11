@@ -10,8 +10,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-make-post',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './make-post.component.html',
   styleUrl: './make-post.component.css'
 })

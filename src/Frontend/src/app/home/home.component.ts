@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
-import { CommonModule } from '@angular/common';
+ 
 import { UserService } from '../../services/user.service';
 import { Person } from '../../models/survey';
 import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule],
+   
+   
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

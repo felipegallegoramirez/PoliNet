@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+ 
 import { FormControl, ReactiveFormsModule, FormGroup, Validator, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { Post } from '../../models/post';
@@ -14,8 +14,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-profile',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

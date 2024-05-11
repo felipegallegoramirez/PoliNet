@@ -8,8 +8,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-edit-profile',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './edit-profile.component.html',
   styleUrl: './edit-profile.component.css'
 })

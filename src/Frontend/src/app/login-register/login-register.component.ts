@@ -9,8 +9,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-login-register',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './login-register.component.html',
   styleUrl: './login-register.component.css'
 })

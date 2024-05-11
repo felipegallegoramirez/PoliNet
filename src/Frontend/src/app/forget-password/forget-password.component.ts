@@ -8,8 +8,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-forget-password',
-  standalone: true,
-  imports: [ReactiveFormsModule],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
 })

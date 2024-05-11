@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Request } from '../../models/request';
 import { Survey } from '../../models/survey';
 import { User } from '../../models/user';
-import { CommonModule } from '@angular/common';
 import { RequestService } from '../../services/request.service';
 import { SurveyService } from '../../services/survey.service';
 import { UserService } from '../../services/user.service';
@@ -13,8 +12,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-admin-view',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.css'
 })

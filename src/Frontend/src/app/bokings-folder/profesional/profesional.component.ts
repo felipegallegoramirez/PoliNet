@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
 import { UserService } from '../../../services/user.service';
-import { CommonModule } from '@angular/common';
+ 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-profesional',
-  standalone: true,
-  imports: [CommonModule],
+   
+   
   templateUrl: './profesional.component.html',
   styleUrls: ['./profesional.component.css'],
 })

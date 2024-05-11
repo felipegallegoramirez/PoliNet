@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../../../services/booking.service';
-import { CommonModule } from '@angular/common';
+ 
 import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  standalone: true,
-  imports: [CommonModule],
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {

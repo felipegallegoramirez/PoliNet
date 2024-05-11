@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+ 
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -7,8 +7,6 @@ import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-search',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
