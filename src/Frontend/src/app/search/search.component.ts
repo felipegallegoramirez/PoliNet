@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-search',
@@ -42,7 +43,7 @@ export class SearchComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

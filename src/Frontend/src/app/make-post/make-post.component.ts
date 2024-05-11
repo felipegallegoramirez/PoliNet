@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Comment, Post } from '../../models/post';
 import { User } from '../../models/user';
 import { Person } from '../../models/survey';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-make-post',
@@ -41,7 +42,7 @@ export class MakePostComponent implements OnInit{
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

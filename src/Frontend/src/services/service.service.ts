@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient  } from "@angular/common/http";
-
 import { Service } from "../models/service";
+import { environment } from "../environments/environments";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { Service } from "../models/service";
 export class ServiceService {
   selectedService: Service;
   services: Service[] = [];
-  readonly URL_API = "http://localhost:3000/api/service";
+
+  readonly URL_API = environment.backend+"api/service";
 
 
   constructor(private http: HttpClient) {

@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.service';
 import { PostService } from '../../services/post.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-admin-view',
@@ -238,7 +239,7 @@ export class AdminViewComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

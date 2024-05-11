@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BookingService } from '../../../services/booking.service';
 import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-time',
@@ -111,7 +112,7 @@ export class TimeComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common'
+import { environment } from '../environments/environments';
 
 @Component({
   selector: 'app-root',
@@ -119,7 +120,7 @@ export class AppComponent implements OnInit {
     let ButtonSignOut = document.getElementById('Sign-out');
     ButtonSignOut?.addEventListener('click',() => {
      localStorage.removeItem('User')
-     window.location.replace('http://localhost:4200/#/Login')
+     window.location.replace(environment.baseUrl+'#/Login')
     })
   }
 

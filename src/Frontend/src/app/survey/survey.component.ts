@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Person, Survey } from '../../models/survey';
+import { Survey } from '../../models/survey';
 import { SurveyService } from '../../services/survey.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-survey',
@@ -32,13 +32,13 @@ export class SurveyComponent implements OnInit {
         var dia = fechaActual.getDate();
         var mes = fechaActual.getMonth()
         if(this.survey.state==true){
-          window.location.replace('http://localhost:4200/Home')
+          window.location.replace(environment.baseUrl+'Home')
         }else if(mes<Number(this.survey.month)){
-          window.location.replace('http://localhost:4200/Home')
+          window.location.replace(environment.baseUrl+'Home')
         }else if(mes==Number(this.survey.month)&&dia<Number(this.survey.day)){
-          window.location.replace('http://localhost:4200/Home')
+          window.location.replace(environment.baseUrl+'Home')
         }else if(mes==Number(this.survey.month)&&dia==Number(this.survey.day)&&hora<Number(this.survey.hour)){
-          window.location.replace('http://localhost:4200/Home')
+          window.location.replace(environment.baseUrl+'Home')
         }else{
           this.checkLocalStorage();
           this.authSession();
@@ -105,7 +105,7 @@ export class SurveyComponent implements OnInit {
     this.surveyService.putSurvey(this.id,this.survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
-        window.location.replace('http://localhost:4200/Home')
+        window.location.replace(environment.baseUrl+'Home')
       }
     })
   }
@@ -150,7 +150,7 @@ export class SurveyComponent implements OnInit {
     this.surveyService.putSurvey(this.id,this.survey).subscribe((res) => {
       if(res){
         window.alert('Encuesta enviada')
-        window.location.replace('http://localhost:4200/Home')
+        window.location.replace(environment.baseUrl+'Home')
       }
     })
   }
@@ -162,7 +162,7 @@ export class SurveyComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

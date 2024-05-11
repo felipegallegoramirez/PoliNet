@@ -5,7 +5,7 @@ import { User, userLogin } from '../../models/user';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Person } from '../../models/survey';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-login-register',
@@ -163,7 +163,7 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
       let userTemporal = res as userLogin;
       if (userTemporal) {
         localStorage.setItem('User', JSON.stringify(userTemporal));
-        window.location.replace('http://localhost:4200/Home')
+        window.location.replace(environment.baseUrl+'Home')
       }
       this.formLogin.reset();
     }, err => {
@@ -186,7 +186,7 @@ export class LoginRegisterComponent implements OnInit, AfterViewInit {
     let x = localStorage.getItem('User');
 
     if (x != null) {
-      window.location.replace('http://localhost:4200/Home')
+      window.location.replace(environment.baseUrl+'Home')
     }
   }
 

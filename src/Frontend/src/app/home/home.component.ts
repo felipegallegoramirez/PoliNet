@@ -4,6 +4,8 @@ import { PostService } from '../../services/post.service';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { Person } from '../../models/survey';
+import { environment } from '../../environments/environments';
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -38,7 +40,7 @@ export class HomeComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

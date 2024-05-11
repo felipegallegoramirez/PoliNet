@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-recovery-password',
@@ -40,7 +41,7 @@ export class RecoveryPasswordComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x != null){
-      window.location.replace('http://localhost:4200/Home')
+      window.location.replace(environment.baseUrl+'Home')
     }
   }
   /**  fin función */

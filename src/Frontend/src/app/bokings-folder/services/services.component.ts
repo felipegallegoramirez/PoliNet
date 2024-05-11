@@ -3,6 +3,7 @@ import { Service } from '../../../models/service';
 import { ServiceService } from '../../../services/service.service';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-services',
@@ -32,7 +33,7 @@ export class ServicesComponent implements OnInit {
   let x = localStorage.getItem('User');
 
   if(x == null){
-    window.location.replace('http://localhost:4200/Login')
+    window.location.replace(environment.baseUrl+'Login')
   }
 }
 /**  fin función */

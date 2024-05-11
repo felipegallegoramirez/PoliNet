@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Person } from '../../models/survey';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-edit-profile',
@@ -44,7 +45,7 @@ export class EditProfileComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

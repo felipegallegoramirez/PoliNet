@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { Post } from '../models/post';
+import { environment } from "../environments/environments";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PostService {
 
   post: Post[] = [];
 
-  private apiUrl = 'http://localhost:3000/api/';
+  private apiUrl = environment.backend+'api/';
 
   createPost(post:Post){
     return this.http.post<Post>(this.apiUrl + "post/", post);

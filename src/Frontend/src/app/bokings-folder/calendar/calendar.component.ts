@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Booking } from '../../../models/booking';
 import { BookingService } from '../../../services/booking.service';
 import { CommonModule } from '@angular/common';
-
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-calendar',
@@ -133,7 +132,7 @@ cargar(x:number){
   let x = localStorage.getItem('User');
 
   if(x == null){
-    window.location.replace('http://localhost:4200/Login')
+    window.location.replace(environment.baseUrl+'Login')
   }
 }
 /**  fin función */

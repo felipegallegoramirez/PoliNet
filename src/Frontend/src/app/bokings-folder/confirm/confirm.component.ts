@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-confirm',
@@ -57,7 +58,7 @@ export class ConfirmComponent implements OnInit {
       duration: 5000
     });
     setTimeout(() => {
-      window.location.replace('http://localhost:4200/Services')
+      window.location.replace(environment.baseUrl+'Services')
     }, 3000)
     
   }
@@ -67,7 +68,7 @@ export class ConfirmComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */

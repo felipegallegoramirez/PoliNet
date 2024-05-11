@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient  } from "@angular/common/http";
-
 import { Booking } from "../models/booking";
+import { environment } from "../environments/environments";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { Booking } from "../models/booking";
 export class BookingService {
   selectedBooking: Booking;
   bookings: Booking[] = [];
-  readonly URL_API = "http://localhost:3000/api/booking";
+  
+  readonly URL_API = environment.backend+"api/booking";
 
 
   constructor(private http: HttpClient) {

@@ -4,6 +4,8 @@ import { User } from '../../models/user';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Person } from '../../models/survey';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environments';
+
 @Component({
   selector: 'app-forget-password',
   standalone: true,
@@ -29,7 +31,7 @@ export class ForgetPasswordComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x != null){
-      window.location.replace('http://localhost:4200/Home')
+      window.location.replace(environment.baseUrl+'Home')
     }
   }
   /**  fin función */

@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Person } from '../../models/survey';
 import { Request } from '../../models/request';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environments';
 
 @Component({
   selector: 'app-profile',
@@ -129,7 +130,7 @@ export class ProfileComponent implements OnInit {
     let x = localStorage.getItem('User');
 
     if(x == null){
-      window.location.replace('http://localhost:4200/Login')
+      window.location.replace(environment.baseUrl+'Login')
     }
   }
   /**  fin función */
@@ -190,7 +191,7 @@ export class ProfileComponent implements OnInit {
       this.postService.deletePost(delete_Id).subscribe((res) => {
         if(res){
           window.alert('Se ha eliminado el post');
-          window.location.replace('http://localhost:4200/Profile/'+this.idsession)
+          window.location.replace(environment.baseUrl+'Profile/'+this.idsession)
         }else{
           window.alert('No se ha podido eliminar el post')
         }
@@ -513,7 +514,7 @@ export class ProfileComponent implements OnInit {
   buttons(){
     let makePost = document.querySelector('#makePost');
     makePost?.addEventListener('click', () => {
-      window.location.replace('http://localhost:4200/makePost/'+this.idsession)
+      window.location.replace(environment.baseUrl+'makePost/'+this.idsession)
     })
   }
   
@@ -534,7 +535,7 @@ export class ProfileComponent implements OnInit {
     let ButtonEdit = document.querySelectorAll(`#${editProfile}`) as NodeListOf<HTMLButtonElement>;
     ButtonEdit.forEach(editProfile => {
       editProfile?.addEventListener('click', () => {
-        window.location.replace('http://localhost:4200/editProfile/'+this.idsession)
+        window.location.replace(environment.baseUrl+'editProfile/'+this.idsession)
       }) 
     })
   }
