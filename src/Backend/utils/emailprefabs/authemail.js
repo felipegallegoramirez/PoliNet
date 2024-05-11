@@ -9,7 +9,7 @@ const messageLogin = (correo,id,code) => {
 </div>
 
 <div class="inf" style="text-align: center;">
-    <a href="http://localhost:4200/Recovery/${id}/${code}" style="text-decoration: none;color: black;"><h3 style="font-size: 25px;margin: 10px;" >Click <b style="color:#0388AA;">aqui</b> para ingresar </h3></a>
+    <a href="https://polinet.netlify.app/Recovery/${id}/${code}" style="text-decoration: none;color: black;"><h3 style="font-size: 25px;margin: 10px;" >Click <b style="color:#0388AA;">aqui</b> para ingresar </h3></a>
     <p style="text-align: justify;width: 50%;margin: auto;margin-top: 60px;">Hemos detectado un intento de acceso a su cuenta recientemente. Si no ha sido usted, por favor ignore este mensaje.
         <br>
         <br>

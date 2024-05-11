@@ -14,11 +14,11 @@ const messageBoking = (correo, name, fecha,other,id,survey) => {
         <br>
         <br>
         <br>
-        <a href="http://localhost:4200/Reunion/${id}/">Link de la asesoria</a>
+        <a href="https://polinet.netlify.app/Reunion/${id}/">Link de la asesoria</a>
         <br>
         <br>
         <b>Recuerda calificar luego de la reunion </b>
-        <a href="http://localhost:4200/survey/${survey}/">Link de la asesoria</a>
+        <a href="https://polinet.netlify.app/survey/${survey}/">Link de la asesoria</a>
         <br>
         <br>
         <br>
