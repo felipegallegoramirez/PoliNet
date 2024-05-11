@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    baseUrl: "http://localhost:4200/",
-    backend:"http://localhost:3000/"
+    baseUrl: "https://polinet.netlify.app/",
+    backend:"https://polinet.onrender.com/"
   };
