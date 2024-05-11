@@ -6,7 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes, withHashLocation()), // Enable hash routing
+    provideRouter(routes), // Enable hash routing
     provideHttpClient(),
     provideAnimationsAsync()
   ],

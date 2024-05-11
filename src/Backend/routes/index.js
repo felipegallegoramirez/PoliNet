@@ -37,8 +37,8 @@ router.use('/public/images', express.static(path.resolve('./storage')));
 
 // Si se le pasa otra url
 router.get('*', (req, res,next) => {
+    console.log(`Acceso a la ruta: ${req.method} ${req.url}`);
     next(boom.badRequest("ROUTE_NOT_FOUD",400))
-    
 })
 
 
