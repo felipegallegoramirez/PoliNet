@@ -86,7 +86,7 @@ UserCtrl.createUser = async (req, res, next) => {
             email,
             password: await encrypt(req.body.password),
             rol,
-            files_id,
+            files_id:['default.png',''],
             post_id,
             bloq:[[],[],[],[],[],[],[],[],[]],
             services,
