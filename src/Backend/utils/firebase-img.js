@@ -14,9 +14,21 @@ admin.initializeApp({
         destination: `images/${name}`,
       });
       await file.makePublic();
+      await makeAllFilesPublic();
       console.log("Imagen subida exitosamente.");
     } catch (error) {
       console.error("Error al subir la imagen:", error);
+    }
+  }
+
+  async function makeAllFilesPublic() {
+    try {
+      const [files] = await bucket.getFiles(); // Obtén todos los archivos en el bucket
+      for (const file of files) {
+        await makeFilePublic(file.name); // Haz cada archivo público
+      }
+    } catch (error) {
+      console.error("Error al obtener archivos:", error);
     }
   }
 
