@@ -4,7 +4,7 @@ const { encrypt } = require("../utils/encript")
 const UserCtrl = {};
 const { messageLogin } = require("../utils/emailprefabs/authemail");
 const { messageRegister } = require("../utils/emailprefabs/registerEmail");
-const { uploadImage } = require("../utils/firebase-img")
+const { uploadImage , deleteImage } = require("../utils/firebase-img")
 
 UserCtrl.getUsers = async (req, res, next) => {
     try{
@@ -169,6 +169,9 @@ UserCtrl.putPhotoProfile = async (req, res, next) => {
         const image = req.file.filename;
         const { id } = req.params;
         const user = await User.findById(id);
+
+        await deleteImage(user.file[0])
+
         for(let i = 0; i < user.post_id.length; i++){
             await Post.findByIdAndUpdate(user.post_id[i], {creator_image: image});
         }
@@ -187,6 +190,8 @@ UserCtrl.putPdfProfile = async (req, res, next) => {
         const pdf = req.file.filename;
         const { id } = req.params;
         const user = await User.findById(id);
+
+        await deleteImage(user.file[1])
 
         user.files_id[1] = pdf;
         await uploadImage(pdf) 
@@ -209,6 +214,9 @@ UserCtrl.editUser = async (req, res, next) => {
 
 UserCtrl.deleteUser = async (req, res, next) => {
     try{
+        var user = await User.findById(req.params.id);
+        await deleteImage(user.files_id[0]);
+        await deleteImage(user.files_id[1]);
         await User.findByIdAndRemove(req.params.id);
         res.json({ status: "User Deleted" });
     }catch(err){

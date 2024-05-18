@@ -77,6 +77,8 @@ PostCtrl.getPost = async (req, res, next) => {
 
 PostCtrl.deletePost = async (req, res, next) => {
     try{
+        var post = await Post.findById(req.params.id);
+        await deleteImage(post.image)
         await Post.findByIdAndRemove(req.params.id);
         res.json({ status: "Post Deleted" });
     }catch(err){
