@@ -4,7 +4,7 @@ const { encrypt } = require("../utils/encript")
 const UserCtrl = {};
 const { messageLogin } = require("../utils/emailprefabs/authemail");
 const { messageRegister } = require("../utils/emailprefabs/registerEmail");
-
+const { uploadImage } = require("../utils/firebase-img")
 
 UserCtrl.getUsers = async (req, res, next) => {
     try{
@@ -173,6 +173,7 @@ UserCtrl.putPhotoProfile = async (req, res, next) => {
             await Post.findByIdAndUpdate(user.post_id[i], {creator_image: image});
         }
         user.files_id[0] = image;
+        await uploadImage(image) 
         let save = await User.findByIdAndUpdate(id, user);
 
         res.status(200).send(save);
@@ -188,7 +189,7 @@ UserCtrl.putPdfProfile = async (req, res, next) => {
         const user = await User.findById(id);
 
         user.files_id[1] = pdf;
-
+        await uploadImage(pdf) 
         let save = await User.findByIdAndUpdate(id, user);
         res.status(200).send(save);
     }catch(err){

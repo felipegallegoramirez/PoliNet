@@ -1,0 +1,22 @@
+const admin = require("firebase-admin");
+const serviceAccount = JSON.parse(Buffer.from(process.env.CREDENTIAL_FIREBASE, 'base64').toString('ascii'));
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: "your-storage-bucket-url"
+  });
+  
+  const bucket = admin.storage().bucket();
+  
+  async function uploadImage(name) {
+    try {
+      await bucket.upload(`${__dirname}/../storage/${name}`, {
+        destination: `images/${name}`,
+      });
+      console.log("Imagen subida exitosamente.");
+    } catch (error) {
+      console.error("Error al subir la imagen:", error);
+    }
+  }
+
+module.exports ={uploadImage}

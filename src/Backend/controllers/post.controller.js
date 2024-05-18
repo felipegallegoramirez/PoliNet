@@ -42,7 +42,7 @@ PostCtrl.createPost = async (req, res, next) => {
             likes,
             comment};
             
-        
+        await uploadImage(image)  
         var save= await Post.create(body);
         res.status(200).send(save)
     }catch(err){
