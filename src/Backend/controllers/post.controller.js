@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-
+const { uploadImage } = require("../utils/firebase-img")
 const PostCtrl = {};
 
 
