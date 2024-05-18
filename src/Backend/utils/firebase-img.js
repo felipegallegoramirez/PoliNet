@@ -37,7 +37,6 @@ admin.initializeApp({
         destination: `images/${name}`,
       });
       await file.makePublic();
-      await makeAllFilesPublic();
       console.log("Imagen subida exitosamente.");
     } catch (error) {
       console.error("Error al subir la imagen:", error);
