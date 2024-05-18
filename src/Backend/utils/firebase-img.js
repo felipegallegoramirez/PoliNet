@@ -10,9 +10,10 @@ admin.initializeApp({
   
   async function uploadImage(name) {
     try {
-      await bucket.upload(`${__dirname}/../storage/${name}`, {
+        const [ file ] = await bucket.upload(`${__dirname}/../storage/${name}`, {
         destination: `images/${name}`,
       });
+      await file.makePublic();
       console.log("Imagen subida exitosamente.");
     } catch (error) {
       console.error("Error al subir la imagen:", error);
