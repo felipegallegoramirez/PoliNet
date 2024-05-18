@@ -11,7 +11,7 @@ const bucket = admin.storage().bucket();
 
 async function deleteImage(remoteFilePath) {
     try {
-        await bucket.file(remoteFilePath).delete();
+        await bucket.file(`images/${remoteFilePath}`).delete();
     } catch (error) {
         console.error(error);
     }

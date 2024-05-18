@@ -170,13 +170,15 @@ UserCtrl.putPhotoProfile = async (req, res, next) => {
         const { id } = req.params;
         const user = await User.findById(id);
 
-        await deleteImage(user.file[0])
+        if(user.files_id[0] != 'default.png'){
+            await deleteImage(user.files_id[0]);
+        }
 
         for(let i = 0; i < user.post_id.length; i++){
             await Post.findByIdAndUpdate(user.post_id[i], {creator_image: image});
         }
         user.files_id[0] = image;
-        await uploadImage(image) 
+        await uploadImage(image);
         let save = await User.findByIdAndUpdate(id, user);
 
         res.status(200).send(save);
@@ -191,7 +193,9 @@ UserCtrl.putPdfProfile = async (req, res, next) => {
         const { id } = req.params;
         const user = await User.findById(id);
 
-        await deleteImage(user.file[1])
+        if(user.files_id[1] != ''){
+            await deleteImage(user.files_id[1])
+        }
 
         user.files_id[1] = pdf;
         await uploadImage(pdf) 
@@ -215,8 +219,12 @@ UserCtrl.editUser = async (req, res, next) => {
 UserCtrl.deleteUser = async (req, res, next) => {
     try{
         var user = await User.findById(req.params.id);
-        await deleteImage(user.files_id[0]);
-        await deleteImage(user.files_id[1]);
+        if(user.files_id[0] != 'default.png'){
+            await deleteImage(user.files_id[0]);
+        }
+        if(user.files_id[1] != ''){
+            await deleteImage(user.files_id[1])
+        }
         await User.findByIdAndRemove(req.params.id);
         res.json({ status: "User Deleted" });
     }catch(err){

@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-const { uploadImage } = require("../utils/firebase-img")
+const { uploadImage, deleteImage } = require("../utils/firebase-img")
 const PostCtrl = {};
 
 
@@ -42,7 +42,7 @@ PostCtrl.createPost = async (req, res, next) => {
             likes,
             comment};
             
-        await uploadImage(image)  
+        await uploadImage(image);
         var save= await Post.create(body);
         res.status(200).send(save)
     }catch(err){
