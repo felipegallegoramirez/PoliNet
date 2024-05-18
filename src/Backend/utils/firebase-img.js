@@ -7,6 +7,16 @@ admin.initializeApp({
   });
   
   const bucket = admin.storage().bucket();
+  async function makeAllFilesPublic() {
+    try {
+      const [files] = await bucket.getFiles(); // Obtén todos los archivos en el bucket
+      for (const file of files) {
+        await makeFilePublic(file.name); // Haz cada archivo público
+      }
+    } catch (error) {
+      console.error("Error al obtener archivos:", error);
+    }
+  }
   
   async function uploadImage(name) {
     try {
@@ -21,15 +31,6 @@ admin.initializeApp({
     }
   }
 
-  async function makeAllFilesPublic() {
-    try {
-      const [files] = await bucket.getFiles(); // Obtén todos los archivos en el bucket
-      for (const file of files) {
-        await makeFilePublic(file.name); // Haz cada archivo público
-      }
-    } catch (error) {
-      console.error("Error al obtener archivos:", error);
-    }
-  }
+  
 
 module.exports = { uploadImage }
