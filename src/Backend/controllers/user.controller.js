@@ -174,7 +174,7 @@ UserCtrl.putPhotoProfile = async (req, res, next) => {
             await deleteImage(user.files_id[0]);
         }
 
-        for(let i = 0; i < user.post_id.length; i++){
+        for(let i = 0; i <= user.post_id.length; i++){
             await Post.findByIdAndUpdate(user.post_id[i], {creator_image: image});
         }
         user.files_id[0] = image;
