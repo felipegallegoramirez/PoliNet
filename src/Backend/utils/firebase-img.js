@@ -3,7 +3,7 @@ const serviceAccount = JSON.parse(Buffer.from(process.env.CREDENTIAL_FIREBASE, '
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    storageBucket: "your-storage-bucket-url"
+    storageBucket: "gs://images-polinet.appspot.com"
   });
   
   const bucket = admin.storage().bucket();
@@ -19,4 +19,4 @@ admin.initializeApp({
     }
   }
 
-module.exports ={uploadImage}
+module.exports = { uploadImage }
