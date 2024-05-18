@@ -7,6 +7,19 @@ admin.initializeApp({
   });
   
   const bucket = admin.storage().bucket();
+
+  async function makeFilePublic(remoteFilePath) {
+    try {
+      const file = bucket.file(remoteFilePath);
+      await file.makePublic();
+      const publicUrl = `https://storage.googleapis.com/images-polinet.appspot.com/images/${remoteFilePath}`;
+      console.log("Archivo hecho público. URL pública:", publicUrl);
+      return publicUrl;
+    } catch (error) {
+      console.error("Error al hacer el archivo público:", error);
+    }
+}
+
   async function makeAllFilesPublic() {
     try {
       const [files] = await bucket.getFiles(); // Obtén todos los archivos en el bucket
